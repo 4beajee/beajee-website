@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import { MatchCardCompact } from "@/components/match-card-compact";
 import { MatchModal } from "@/components/match-modal";
@@ -84,21 +85,6 @@ interface RepoStats {
 }
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://app.gennety.com";
-
-const ideaParagraphs = [
-  "Совершенно очевидно, что люди по отдельности уже не представляют собой такой прикладной ценности, как ранее. Сегодня все делают AI-агенты, и поиск специалистов практически изжил себя. Они передали все свои навыки коммерчески и пользовательски обернутым AI-агентам в лице Claude Code, Cursor, OpenClaw, Hermes Perplexity Computer или более узкоспециализированным типа Jasper AI или Harvey AI.",
-  "Но тогда, может быть, люди представляют гораздо большую ценность в синергии друг с другом, то есть все вместе? Именно это мы и стараемся реализовать внутри Gennety: чтобы 1 плюс 1 было равно не 2, а 3, 4, 5, 10.",
-  "Весь мир и мы с вами — все люди — состоим из атомов. Казалось бы, просто одинаковые частицы в нескольких вариациях, соединенные друг с другом, по своей природе понятны современной науке, по крайней мере на этот момент времени, однако они создают такие сложные системы, которые обретают способность:",
-  "Что как раз и доказывает их невероятную сложность.",
-  "В Gennety мы стараемся добиться совершенно нового качества взаимодействия людей, возможно, даже совершенно разных по своему бэкграунду, специализации и навыкам, но с общей целью. Что в свою очередь сможет породить собой новые эмерджентные свойства, о которых мы даже не могли подозревать, как обычно и бывает. Здесь мы можем привести в пример рождение таких невероятных компаний, как Higgsfield AI, DoorDash, Instagram, Merkur и многих-многих других.",
-];
-
-const ideaAbilities = [
-  "К самоосмыслению",
-  "К самосовершенствованию",
-  "К эффективной совместной работе",
-  "И даже к самоуничтожению",
-];
 
 export default function LandingPage() {
   const t = useTranslations();
@@ -190,6 +176,26 @@ export default function LandingPage() {
         {/* Mobile dropdown */}
         {mobileMenuOpen && (
           <div className="sm:hidden border-t border-[#1a1a1a] px-4 py-3 flex flex-col gap-1 bg-[#050505]/95">
+            <Link
+              href="/idea"
+              className="flex items-center gap-2 py-2.5 text-sm text-neutral-400 transition-colors hover:text-white"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.7"
+              >
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z" />
+              </svg>
+              <span>The Idea</span>
+            </Link>
             <a href={`${appUrl}/feed`} className="py-2.5 text-sm text-neutral-400 hover:text-white transition-colors" onClick={() => setMobileMenuOpen(false)}>
               {t("nav.feed")}
             </a>
@@ -205,6 +211,29 @@ export default function LandingPage() {
           </div>
         )}
       </nav>
+
+      <Link
+        href="/idea"
+        aria-label={t("landing.ideaReadCta")}
+        className="fixed right-0 top-[72%] z-40 hidden translate-y-[calc(-50%+100px)] rounded-l-full border border-r-0 border-white/[0.10] bg-[#080808]/90 px-3 py-2.5 text-neutral-300 shadow-[0_18px_45px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-[border-color,background-color,color,transform] duration-300 hover:-translate-x-0.5 hover:border-white/[0.18] hover:bg-[#0d0d0d] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 sm:block"
+      >
+        <span className="flex items-center gap-2">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.7"
+          >
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z" />
+          </svg>
+          <span className="text-xs font-medium">The Idea</span>
+        </span>
+      </Link>
 
       {/* ── Hero ── */}
       <section
@@ -426,32 +455,6 @@ export default function LandingPage() {
                 <span>{t("landing.openSourceCta")}</span>
                 <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-0.5">&rarr;</span>
               </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Idea ── */}
-      <section id="idea" lang="ru" className="px-4 pb-20 pt-4 sm:px-6 sm:pb-24">
-        <div className="mx-auto max-w-5xl border-t border-[#1a1a1a] pt-12 sm:pt-16">
-          <p className="mb-5 text-[13px] font-semibold uppercase text-neutral-500">
-            Идея
-          </p>
-          <div className="max-w-3xl">
-            <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
-              Идея
-            </h2>
-            <div className="mt-7 space-y-5 text-base leading-8 text-neutral-300 sm:text-lg sm:leading-9">
-              <p>{ideaParagraphs[0]}</p>
-              <p>{ideaParagraphs[1]}</p>
-              <p>{ideaParagraphs[2]}</p>
-              <ol className="list-decimal space-y-2 pl-5 text-neutral-200">
-                {ideaAbilities.map((ability) => (
-                  <li key={ability}>{ability}</li>
-                ))}
-              </ol>
-              <p>{ideaParagraphs[3]}</p>
-              <p>{ideaParagraphs[4]}</p>
             </div>
           </div>
         </div>

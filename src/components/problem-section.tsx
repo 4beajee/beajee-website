@@ -35,10 +35,30 @@ export function ProblemSection() {
 
           <div className="space-y-3">
             {[
-              { title: "The barrier of first contact", desc: "Most people don't know where to find potential partners or how to reach out. So they delay — or avoid it entirely." },
-              { title: "The right people are nearby — but you'll never know", desc: "There's no mechanism that says at the right moment: \"Here's someone you should meet — and here's why.\" So the connection never happens." },
-              { title: "Hard to explain mutual value", desc: "Even when contact happens, people struggle to articulate why working together makes sense. The synergy is real — but invisible." },
-              { title: "Networking stays random", desc: "Finding people at your level, with similar challenges or a complementary perspective, is nearly impossible without the right tool. It relies on luck." }
+              {
+                title: "People don't know how to ask for help",
+                desc: [
+                  "People struggle to ask for help, or feel ashamed to do so, and this becomes a real barrier. Yet research consistently shows that a well-framed request almost always gets a response.",
+                  "A good ask gives the other person a chance to apply their skills or resources, which is rewarding in itself. There is also a curious psychological effect: someone who has helped you once is more likely to help you again than someone you have helped yourself.",
+                  "Steve Jobs illustrates this perfectly. At 12, he found HP co-founder Bill Hewlett's number in the phone book and called him to ask for spare parts to build a frequency counter. Hewlett not only gave him the parts, he offered Jobs a summer job at the factory. Years later, Jobs recalled the story in a 1994 interview and put it simply: \"Most people never get these experiences because they never ask.\""
+                ]
+              },
+              {
+                title: "The barrier of first contact",
+                desc: ["Most people don't know where to find potential partners or how to reach out. So they delay — or avoid it entirely."]
+              },
+              {
+                title: "The right people are nearby — but you'll never know",
+                desc: ["There's no mechanism that says at the right moment: \"Here's someone you should meet — and here's why.\" So the connection never happens."]
+              },
+              {
+                title: "Hard to explain mutual value",
+                desc: ["Even when contact happens, people struggle to articulate why working together makes sense. The synergy is real — but invisible."]
+              },
+              {
+                title: "Networking stays random",
+                desc: ["Finding people at your level, with similar challenges or a complementary perspective, is nearly impossible without the right tool. It relies on luck."]
+              }
             ].map((item, i) => {
               const isOpen = openIndex === i;
               
@@ -75,7 +95,11 @@ export function ProblemSection() {
                           transition={{ duration: 0.2, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                          <p className="pt-2 text-sm leading-6 text-neutral-400">{item.desc}</p>
+                          <div className="space-y-3 pt-2 text-sm leading-6 text-neutral-400">
+                            {item.desc.map((paragraph) => (
+                              <p key={paragraph}>{paragraph}</p>
+                            ))}
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>

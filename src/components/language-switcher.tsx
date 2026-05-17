@@ -2,8 +2,25 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useSyncExternalStore } from "react";
 import { localeCookieName, locales, localeNames, type Locale } from "@/i18n/config";
+
+const localeCookieChangeEvent = "gennety-locale-cookie-change";
+
+function hasLocaleCookie() {
+  if (typeof document === "undefined") return true;
+  return document.cookie.split("; ").some((cookie) => cookie.startsWith(`${localeCookieName}=`));
+}
+
+function subscribeToLocaleCookie(onStoreChange: () => void) {
+  window.addEventListener(localeCookieChangeEvent, onStoreChange);
+  window.addEventListener("focus", onStoreChange);
+
+  return () => {
+    window.removeEventListener(localeCookieChangeEvent, onStoreChange);
+    window.removeEventListener("focus", onStoreChange);
+  };
+}
 
 export function LanguageSwitcher({
   compact,
@@ -28,10 +45,7 @@ export function LanguageSwitcher({
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  const hasExplicitLocale =
-    typeof document === "undefined"
-      ? true
-      : document.cookie.split("; ").some((cookie) => cookie.startsWith(`${localeCookieName}=`));
+  const hasExplicitLocale = useSyncExternalStore(subscribeToLocaleCookie, hasLocaleCookie, () => true);
 
   const selectedOption: Locale | "auto" = hasExplicitLocale ? locale : "auto";
 
@@ -51,6 +65,7 @@ export function LanguageSwitcher({
       });
     }
 
+    window.dispatchEvent(new Event(localeCookieChangeEvent));
     setOpen(false);
     router.refresh();
   }
