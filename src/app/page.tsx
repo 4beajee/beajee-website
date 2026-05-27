@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { MatchCardCompact } from "@/components/match-card-compact";
 import { MatchModal } from "@/components/match-modal";
 import { LanguageSwitcher } from "@/components/language-switcher";
@@ -74,6 +74,7 @@ interface FeedMatch {
   negotiationSteps: number;
 }
 
+/*
 interface RepoStats {
   url: string;
   stars: number;
@@ -83,12 +84,12 @@ interface RepoStats {
   license: string | null;
   pushedAt: string | null;
 }
+*/
 
 const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://app.gennety.com";
 
 export default function LandingPage() {
   const t = useTranslations();
-  const locale = useLocale();
   const howRef = useReveal();
   const matchRef = useReveal();
   const principlesRef = useReveal();
@@ -98,10 +99,10 @@ export default function LandingPage() {
   const [feedMatches, setFeedMatches] = useState<FeedMatch[]>([]);
   const [selectedMatch, setSelectedMatch] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [repoStats, setRepoStats] = useState<RepoStats | null>(null);
+  // const [repoStats, setRepoStats] = useState<RepoStats | null>(null);
 
-  const formatCompactNumber = (value: number) =>
-    new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 }).format(value);
+  // const formatCompactNumber = (value: number) =>
+  //   new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 }).format(value);
 
   useEffect(() => {
     fetch("/api/feed?limit=3")
@@ -110,6 +111,7 @@ export default function LandingPage() {
       .catch(() => {});
   }, []);
 
+  /*
   useEffect(() => {
     let cancelled = false;
 
@@ -125,6 +127,7 @@ export default function LandingPage() {
       cancelled = true;
     };
   }, []);
+  */
 
   return (
     <div className="min-h-dvh bg-[#050505]">
@@ -414,6 +417,8 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── Open Source (Hidden) ── */}
+      {/*
       <section className="px-4 sm:px-6 pb-20 sm:pb-24">
         <div className="max-w-5xl mx-auto">
           <div className="rounded-xl border border-white/[0.08] bg-[linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.015))] p-5 sm:p-6">
@@ -459,6 +464,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* ── Footer ── */}
       <footer className="py-10 sm:py-12 px-4 sm:px-6 border-t border-[#1a1a1a]" style={{ paddingBottom: "calc(2.5rem + var(--safe-bottom))" }}>
