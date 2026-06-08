@@ -15,7 +15,7 @@ import { MatchExampleSection } from "@/components/match-example-section";
 import { KeyPrinciplesSection } from "@/components/key-principles-section";
 import { cx, primaryButtonClass } from "@/components/ui/app-chrome";
 
-const githubRepoUrl = "https://github.com/Gennety/Gennety";
+const githubRepoUrl = "https://github.com/Beajee/Beajee";
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -86,7 +86,7 @@ interface RepoStats {
 }
 */
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://app.gennety.com";
+const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://app.beajee.com";
 
 export default function LandingPage() {
   const t = useTranslations();
@@ -137,7 +137,7 @@ export default function LandingPage() {
         style={{ paddingTop: "var(--safe-top)" }}
       >
         <div className="flex items-center justify-between px-4 sm:px-6 h-14 sm:h-16 max-w-5xl mx-auto">
-          <span className="text-base sm:text-lg font-semibold text-white">{t("common.gennety")}</span>
+          <span className="text-base sm:text-lg font-semibold text-white">{t("common.beajee")}</span>
 
           {/* Desktop nav links */}
           <div className="hidden sm:flex items-center gap-4 md:gap-6">
@@ -469,7 +469,7 @@ export default function LandingPage() {
       {/* ── Footer ── */}
       <footer className="py-10 sm:py-12 px-4 sm:px-6 border-t border-[#1a1a1a]" style={{ paddingBottom: "calc(2.5rem + var(--safe-bottom))" }}>
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
-          <span className="text-sm text-neutral-500">{t("common.gennety")}</span>
+          <span className="text-sm text-neutral-500">{t("common.beajee")}</span>
           <div className="flex items-center gap-4 flex-wrap justify-center">
             <a
               href={githubRepoUrl}

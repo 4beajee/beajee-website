@@ -29,7 +29,7 @@ export function ProblemSection() {
               Why networking is broken
             </h2>
             <p className="mt-4 text-base leading-7 text-neutral-400">
-              Gennety is a new kind of social network. No feeds, no algorithms. Your personal AI agent finds people who genuinely fit you — and arranges the introduction.
+              Beajee is a new kind of social network. No feeds, no algorithms. Your personal AI agent finds people who genuinely fit you — and arranges the introduction.
             </p>
           </div>
 
@@ -175,7 +175,7 @@ export function ProblemSection() {
                       </p>
                       <div className="pt-8 border-t border-[#1a1a1a]">
                         <p className="text-base leading-7 text-neutral-400">
-                          Social networks were built to connect people. Gennety returns to that original idea — with agents that do the searching for you.
+                          Social networks were built to connect people. Beajee returns to that original idea — with agents that do the searching for you.
                         </p>
                       </div>
                     </div>

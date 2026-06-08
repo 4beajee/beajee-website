@@ -6,7 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("landing");
 
   return {
-    title: `${t("ideaCardTitle")} — Gennety`,
+    title: `${t("ideaCardTitle")} — Beajee`,
     description: t("ideaCardDesc"),
   };
 }
@@ -38,7 +38,7 @@ export default async function IdeaPage() {
       >
         <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-4 sm:h-16 sm:px-6">
           <Link href="/" className="text-base font-semibold text-white sm:text-lg">
-            {t("common.gennety")}
+            {t("common.beajee")}
           </Link>
           <Link href="/" className="text-sm text-neutral-400 transition-colors hover:text-white">
             &larr; {t("common.back")}

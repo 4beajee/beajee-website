@@ -1,144 +1,96 @@
-# Landing Split Migration
+# Beajee Domain Migration
 
-## Current Target Architecture
+## Target Architecture
 
-- `https://gennety.com` and `https://www.gennety.com` serve this standalone website from Vercel.
-- `https://app.gennety.com` serves the main Gennety application from the DigitalOcean Docker deployment.
-- `https://api.gennety.com` stays on the main Gennety application server.
-- Website CTA links (`Login`, `Get Started`, `Dashboard`-style destinations) point to `https://app.gennety.com`.
+- `https://beajee.com` and `https://www.beajee.com`: Vercel landing.
+- `https://app.beajee.com`: DigitalOcean application.
+- `https://api.beajee.com`: DigitalOcean MCP/API endpoint.
+- `https://api.beajee.com/mcp`: canonical Beajee MCP URL.
 
-## Vercel Setup
+## DNS Records
 
-1. Create a GitHub repository for this folder, for example `Gennety/gennety-website`.
-2. Push `/Users/pro/Desktop/Gennety website` to that repository.
-3. Import the repository into Vercel.
-4. Add environment variables:
+Required records:
 
 ```text
-NEXT_PUBLIC_APP_URL=https://app.gennety.com
-NEXT_PUBLIC_LANDING_URL=https://gennety.com
+beajee.com      A      76.76.21.21
+www.beajee.com  CNAME  cname.vercel-dns.com
+app.beajee.com  A      104.236.119.88
+api.beajee.com  A      104.236.119.88
 ```
 
-5. Deploy a preview first and check:
-   - `/` renders the landing page.
-   - `/privacy`, `/terms`, `/cookie-policy` render.
-   - `/skill.md`, `/llms.txt`, `/skills/RULES.md`, `/tools/gennety-openclaw-bridge.md` return `200`.
-   - `Login` and `Get Started` open `https://app.gennety.com/login`.
-   - `/feed` redirects to `https://app.gennety.com/feed`.
+Use the exact apex and `www` values shown by Vercel if Vercel changes its
+recommended records.
 
-## DNS Change
+Legacy records for `gennety.com`, `www.gennety.com`, `app.gennety.com`, and
+`api.gennety.com` should remain during the agent migration window. Remove them
+only after installed agents, MCP clients, OAuth providers, webhooks, and email
+links no longer use the legacy URLs.
 
-Do this only after the Vercel preview looks correct.
+## Vercel
 
-In your DNS provider:
-
-1. Point `gennety.com` to the DNS record Vercel shows for the apex domain.
-2. Point `www.gennety.com` to the DNS record Vercel shows for `www`.
-3. Keep these records on the DigitalOcean droplet:
+Set these environment variables on the landing project:
 
 ```text
-app.gennety.com -> 104.236.119.88
-api.gennety.com -> 104.236.119.88
+NEXT_PUBLIC_APP_URL=https://app.beajee.com
+NEXT_PUBLIC_LANDING_URL=https://beajee.com
 ```
 
-4. Remove or replace any old `gennety.com` / `www.gennety.com` records that point to `104.236.119.88`.
-
-Verification after DNS propagation:
+Attach `beajee.com` and `www.beajee.com` to the project, deploy the updated
+landing, and verify:
 
 ```bash
-curl -I https://gennety.com
-curl -I https://www.gennety.com
-curl -I https://gennety.com/skill.md
-curl -I https://app.gennety.com/login
-curl -I https://api.gennety.com/mcp
+curl -I https://beajee.com
+curl -I https://www.beajee.com
+curl -I https://beajee.com/skill.md
+curl -I https://beajee.com/tools/beajee-openclaw-bridge.mjs
 ```
 
-Expected:
+## Application Server
 
-- `gennety.com` and `www.gennety.com` are served by Vercel.
-- `app.gennety.com` and `api.gennety.com` are still served by the DigitalOcean/nginx app server.
-
-## DigitalOcean Nginx Cleanup
-
-Run this only after `gennety.com` and `www.gennety.com` are live on Vercel.
-
-Current server file:
+The production runtime must use:
 
 ```text
-/etc/nginx/sites-available/gennety
+NEXTAUTH_URL=https://app.beajee.com
+NEXTAUTH_COOKIE_DOMAIN=.beajee.com
+NEXT_PUBLIC_APP_URL=https://app.beajee.com
+NEXT_PUBLIC_LANDING_URL=https://beajee.com
 ```
 
-Backup first:
+Build with the production env explicitly. Docker Compose otherwise reads build
+arguments from `.env`, even though the container runtime uses
+`.env.production`.
 
 ```bash
-ssh -i ~/.ssh/id_rsa root@104.236.119.88
-cp /etc/nginx/sites-available/gennety /etc/nginx/sites-available/gennety.bak.$(date +%Y%m%d%H%M%S)
+docker compose --env-file .env.production \
+  -f docker-compose.prod.yml up -d --build --remove-orphans
 ```
 
-Edit the nginx config:
+The nginx configuration must terminate TLS for `app.beajee.com` and
+`api.beajee.com`, then proxy both hosts to `http://localhost:3000`.
+
+## External Integrations
+
+Update these provider-side settings:
+
+- Google OAuth: add `https://app.beajee.com/api/auth/callback/google`.
+- Resend: verify `beajee.com` and authorize the configured Beajee sender.
+- Telegram BotFather: change the Web App and Mini App URLs to
+  `https://app.beajee.com/telegram`.
+- Slack: rename slash commands to `/beajee-search` and `/beajee-task`; update
+  request URLs and webhook headers to the Beajee names used by the code.
+- Jira, Confluence, GitHub, Notion, and Linear: update webhook URLs to
+  `https://api.beajee.com` or `https://app.beajee.com` and use the new
+  `x-beajee-*` headers.
+- OpenClaw and other agents: replace the MCP entry with the `beajee` server,
+  fetch `https://beajee.com/skill.md`, and install the Beajee bridge.
+
+## Verification
 
 ```bash
-nano /etc/nginx/sites-available/gennety
+curl -I https://app.beajee.com/login
+curl -s https://api.beajee.com/mcp
+curl -I https://beajee.com/skill.md
 ```
 
-Delete these two server blocks:
-
-- the `listen 443 ssl;` block with `server_name gennety.com www.gennety.com;`
-- the `listen 80;` block with `server_name gennety.com www.gennety.com;`
-
-Keep these blocks:
-
-- `server_name app.gennety.com;`
-- `server_name api.gennety.com;`
-
-Validate and reload nginx:
-
-```bash
-nginx -t
-systemctl reload nginx
-systemctl status nginx --no-pager
-```
-
-Optional later cleanup after several days of stable Vercel serving:
-
-```bash
-certbot certificates
-certbot delete --cert-name gennety.com
-```
-
-Do not delete the `app.gennety.com` or `api.gennety.com` certificates.
-
-## Main App Deployment Timing
-
-The main repository has been adjusted so `/` is no longer the landing page. Deploy that cleanup to the DigitalOcean app only after the Vercel landing is ready, otherwise `https://gennety.com` could temporarily stop showing the marketing site before DNS has moved.
-
-After the domain switch:
-
-```bash
-cd /Users/pro/Desktop/Gennety
-npm run lint
-npm run build
-rsync -az --delete \
-  -e "ssh -i ~/.ssh/id_rsa" \
-  --exclude ".git/" \
-  --exclude "node_modules/" \
-  --exclude ".next/" \
-  --exclude ".env" \
-  --exclude ".env.production" \
-  --exclude ".env*.bak*" \
-  --exclude ".vercel/" \
-  --exclude ".DS_Store" \
-  --exclude "tsconfig.tsbuildinfo" \
-  /Users/pro/Desktop/Gennety/ \
-  root@104.236.119.88:/opt/gennety/
-ssh -i ~/.ssh/id_rsa root@104.236.119.88 "cd /opt/gennety && docker compose -f docker-compose.prod.yml up -d --build --remove-orphans"
-```
-
-Final smoke checks:
-
-```bash
-curl -I https://gennety.com
-curl -I https://app.gennety.com/login
-curl -I https://app.gennety.com/home
-curl -I https://api.gennety.com/mcp
-```
+An MCP `initialize` request must return `serverInfo.name` as `beajee`. The MCP
+health response must return `name` as `beajee-mcp`.

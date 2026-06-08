@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect, useSyncExternalStore } from "react";
 import { localeCookieName, locales, localeNames, type Locale } from "@/i18n/config";
 
-const localeCookieChangeEvent = "gennety-locale-cookie-change";
+const localeCookieChangeEvent = "beajee-locale-cookie-change";
 
 function hasLocaleCookie() {
   if (typeof document === "undefined") return true;
