@@ -249,32 +249,37 @@ export default function LandingPage() {
           {/* Decorative agent icons */}
           <div className="pointer-events-none absolute inset-0 select-none">
             <svg
-              viewBox="0 0 48 48"
+              viewBox="0 0 24 24"
               fill="none"
-              className="absolute -left-6 -top-4 h-6 w-6 text-white/[0.08] sm:-left-8 sm:-top-6 sm:h-7 sm:w-7"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="absolute -left-6 -top-4 w-6 h-6 text-white/[0.08] sm:-left-8 sm:-top-6"
               aria-hidden="true"
             >
-              <rect x="8" y="12" width="32" height="24" rx="3" stroke="currentColor" strokeWidth="1.5" fill="none" />
-              <path d="M16 22l-4 4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <path d="M32 22l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <line x1="24" y1="20" x2="22" y2="28" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
             </svg>
             <svg
-              viewBox="0 0 48 48"
+              viewBox="0 0 24 24"
               fill="none"
-              className="absolute right-0 top-1 h-6 w-6 text-white/[0.075] sm:right-4 sm:top-0 sm:h-7 sm:w-7"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="absolute right-0 top-1 w-6 h-6 text-white/[0.075] sm:right-4 sm:top-0"
               aria-hidden="true"
             >
-              <path d="M12 20c0 0 6-6 14-4s12 6 12 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-              <path d="M12 28c0 0 6 6 14 4s12-6 12-12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-              <path d="M8 24H4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              <path d="M44 24H40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-              <circle cx="24" cy="24" r="3.5" stroke="currentColor" strokeWidth="1.5" fill="none" />
+              <path d="M12 2v4" />
+              <path d="M12 6c-3.5 0-6 2.5-6 6 0 2.5 1.5 4.5 3 5" />
+              <path d="M12 6c3.5 0 6 2.5 6 6 0 2.5-1.5 4.5-3 5" />
+              <path d="M9 10h6" />
             </svg>
             <img
               src="/images/agents/hermes.png"
               alt=""
-              className="absolute -bottom-2 right-2 h-6 w-6 opacity-[0.06] sm:-bottom-1 sm:right-8 sm:h-7 sm:w-7 sm:opacity-[0.07]"
+              className="absolute -bottom-2 right-2 w-6 h-6 opacity-[0.06] sm:-bottom-1 sm:right-8"
             />
           </div>
           <h1 className="hero-title text-[2.5rem] font-semibold leading-[1.12] text-white sm:text-5xl md:text-6xl">
