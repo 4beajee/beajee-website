@@ -247,41 +247,73 @@ export default function LandingPage() {
 
         <div className="relative mt-7 w-full max-w-2xl text-center">
           {/* Decorative agent icons */}
-          <div className="pointer-events-none absolute inset-0 select-none">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            className="pointer-events-none absolute -left-6 -top-4 w-6 h-6 select-none text-white/[0.15] sm:-left-8 sm:-top-6"
+            aria-hidden="true"
+          >
+            <path
+              d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"
               stroke="currentColor"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="absolute -left-6 -top-4 w-6 h-6 text-white/[0.08] sm:-left-8 sm:-top-6"
-              aria-hidden="true"
-            >
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-            </svg>
-            <svg
-              viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="absolute right-0 top-1 w-6 h-6 text-white/[0.075] sm:right-4 sm:top-0"
-              aria-hidden="true"
-            >
-              <path d="M12 2v4" />
-              <path d="M12 6c-3.5 0-6 2.5-6 6 0 2.5 1.5 4.5 3 5" />
-              <path d="M12 6c3.5 0 6 2.5 6 6 0 2.5-1.5 4.5-3 5" />
-              <path d="M9 10h6" />
-            </svg>
-            <img
-              src="/images/agents/hermes.png"
-              alt=""
-              className="absolute -bottom-2 right-2 w-6 h-6 opacity-[0.06] sm:-bottom-1 sm:right-8"
             />
-          </div>
+            <path
+              d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+          </svg>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            className="pointer-events-none absolute right-0 top-1 w-6 h-6 select-none text-white/[0.15] sm:right-4 sm:top-0"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 2v4"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+            <path
+              d="M12 6c-3.5 0-6 2.5-6 6 0 2.5 1.5 4.5 3 5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+            <path
+              d="M12 6c3.5 0 6 2.5 6 6 0 2.5-1.5 4.5-3 5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+            <path
+              d="M9 10h6"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
+          </svg>
+          <img
+            src="/images/agents/hermes.png"
+            alt=""
+            className="pointer-events-none absolute -bottom-2 right-2 w-6 h-6 select-none opacity-[0.12] sm:-bottom-1 sm:right-8"
+          />
           <h1 className="hero-title text-[2.5rem] font-semibold leading-[1.12] text-white sm:text-5xl md:text-6xl">
             {t("landing.heroTitle1")}
             <br />
