@@ -121,11 +121,13 @@ const agents = [
     description: "Self-improving open-source agent by Nous Research.",
     url: "https://hermes-agent.nousresearch.com",
     logo: (
-      <img
-        src="/images/agents/hermes.png"
-        alt="Hermes"
-        className="h-10 w-10 object-contain"
-      />
+      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white p-1.5 shadow-sm">
+        <img
+          src="/images/agents/hermes.png"
+          alt="Hermes"
+          className="h-full w-full object-contain"
+        />
+      </div>
     ),
   },
 ];
