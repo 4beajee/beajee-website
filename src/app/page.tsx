@@ -13,7 +13,6 @@ import { TopBanner } from "@/components/top-banner";
 import { HowItWorksSection } from "@/components/how-it-works-section";
 import { MatchExampleSection } from "@/components/match-example-section";
 import { KeyPrinciplesSection } from "@/components/key-principles-section";
-import { SupportedAgentsSection } from "@/components/supported-agents-section";
 import { cx, primaryButtonClass } from "@/components/ui/app-chrome";
 
 const githubRepoUrl = "https://github.com/Beajee/Beajee";
@@ -246,7 +245,38 @@ export default function LandingPage() {
       >
         <TopBanner />
 
-        <div className="mt-7 w-full max-w-2xl text-center">
+        <div className="relative mt-7 w-full max-w-2xl text-center">
+          {/* Decorative agent icons */}
+          <div className="pointer-events-none absolute inset-0 select-none">
+            <svg
+              viewBox="0 0 48 48"
+              fill="none"
+              className="absolute -left-6 -top-4 h-6 w-6 text-white/[0.08] sm:-left-8 sm:-top-6 sm:h-7 sm:w-7"
+              aria-hidden="true"
+            >
+              <rect x="8" y="12" width="32" height="24" rx="3" stroke="currentColor" strokeWidth="1.5" fill="none" />
+              <path d="M16 22l-4 4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              <path d="M32 22l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              <line x1="24" y1="20" x2="22" y2="28" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            <svg
+              viewBox="0 0 48 48"
+              fill="none"
+              className="absolute right-0 top-1 h-6 w-6 text-white/[0.075] sm:right-4 sm:top-0 sm:h-7 sm:w-7"
+              aria-hidden="true"
+            >
+              <path d="M12 20c0 0 6-6 14-4s12 6 12 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+              <path d="M12 28c0 0 6 6 14 4s12-6 12-12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+              <path d="M8 24H4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path d="M44 24H40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <circle cx="24" cy="24" r="3.5" stroke="currentColor" strokeWidth="1.5" fill="none" />
+            </svg>
+            <img
+              src="/images/agents/hermes.png"
+              alt=""
+              className="absolute -bottom-2 right-2 h-6 w-6 opacity-[0.06] sm:-bottom-1 sm:right-8 sm:h-7 sm:w-7 sm:opacity-[0.07]"
+            />
+          </div>
           <h1 className="hero-title text-[2.5rem] font-semibold leading-[1.12] text-white sm:text-5xl md:text-6xl">
             {t("landing.heroTitle1")}
             <br />
@@ -348,9 +378,6 @@ export default function LandingPage() {
           { title: t("landing.privacyTitle"), desc: t("landing.privacyDesc") },
         ]}
       />
-
-      {/* ── Supported Agents ── */}
-      <SupportedAgentsSection />
 
       {/* ── Agent Dialogue ── */}
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
