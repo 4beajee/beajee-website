@@ -13,6 +13,7 @@ import { TopBanner } from "@/components/top-banner";
 import { HowItWorksSection } from "@/components/how-it-works-section";
 import { MatchExampleSection } from "@/components/match-example-section";
 import { KeyPrinciplesSection } from "@/components/key-principles-section";
+import { SupportedAgentsSection } from "@/components/supported-agents-section";
 import { cx, primaryButtonClass } from "@/components/ui/app-chrome";
 
 const githubRepoUrl = "https://github.com/Beajee/Beajee";
@@ -347,6 +348,9 @@ export default function LandingPage() {
           { title: t("landing.privacyTitle"), desc: t("landing.privacyDesc") },
         ]}
       />
+
+      {/* ── Supported Agents ── */}
+      <SupportedAgentsSection />
 
       {/* ── Agent Dialogue ── */}
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
