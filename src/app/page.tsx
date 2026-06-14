@@ -250,17 +250,17 @@ export default function LandingPage() {
           <img
             src="/images/agents/codex.png"
             alt=""
-            className="pointer-events-none absolute -left-6 -top-4 w-6 h-6 select-none opacity-[0.12] sm:-left-8 sm:-top-6"
+            className="pointer-events-none absolute -left-10 -top-8 w-10 h-10 select-none animate-agent-codex sm:-left-16 sm:-top-12 sm:w-12 sm:h-12"
           />
           <img
             src="/images/agents/openclaw.png"
             alt=""
-            className="pointer-events-none absolute right-0 top-1 w-6 h-6 select-none opacity-[0.12] sm:right-4 sm:top-0"
+            className="pointer-events-none absolute right-0 top-1 w-10 h-10 select-none animate-agent-openclaw sm:right-6 sm:top-0 sm:w-12 sm:h-12"
           />
           <img
             src="/images/agents/hermes.png"
             alt=""
-            className="pointer-events-none absolute -bottom-2 right-2 w-6 h-6 select-none opacity-[0.12] sm:-bottom-1 sm:right-8"
+            className="pointer-events-none absolute -bottom-4 right-4 w-10 h-10 select-none animate-agent-hermes sm:-bottom-2 sm:right-10 sm:w-12 sm:h-12"
           />
           <h1 className="hero-title text-[2.5rem] font-semibold leading-[1.12] text-white sm:text-5xl md:text-6xl">
             {t("landing.heroTitle1")}

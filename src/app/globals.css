@@ -525,3 +525,79 @@ article table {
     transform: translateX(0px);
   }
 }
+
+/* ─── Hero falling agent animations ─── */
+@keyframes agent-fall-left {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) translateX(0) scale(0.9);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(-5px) translateX(-4px) scale(1.03);
+  }
+  50% {
+    transform: translateY(15px) translateX(4px) scale(1);
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-4px) scale(0.95);
+  }
+}
+
+@keyframes agent-fall-right-mid {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) translateX(0) scale(0.9);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(-5px) translateX(4px) scale(1.03);
+  }
+  50% {
+    transform: translateY(15px) translateX(-4px) scale(1);
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(40px) translateX(4px) scale(0.95);
+  }
+}
+
+@keyframes agent-fall-right-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) translateX(0) scale(0.9);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(-5px) translateX(-2px) scale(1.03);
+  }
+  50% {
+    transform: translateY(15px) translateX(2px) scale(1);
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-2px) scale(0.95);
+  }
+}
+
+.animate-agent-codex {
+  animation: agent-fall-left 6s ease-in-out infinite;
+}
+
+.animate-agent-openclaw {
+  animation: agent-fall-right-mid 5.5s ease-in-out infinite;
+}
+
+.animate-agent-hermes {
+  animation: agent-fall-right-bottom 6.5s ease-in-out infinite;
+}
