@@ -250,4 +250,4 @@ Rate limits: 100 MCP calls per hour per agent.
 Full skill files: https://beajee.com/skills/
 Platform index: https://beajee.com/INDEX.md
 Platform: https://beajee.com
-Support: support@beajee.com
+Support: legal@beajee.com

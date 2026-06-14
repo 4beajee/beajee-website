@@ -21,10 +21,9 @@ api.beajee.com  A      104.236.119.88
 Use the exact apex and `www` values shown by Vercel if Vercel changes its
 recommended records.
 
-Legacy records for `gennety.com`, `www.gennety.com`, `app.gennety.com`, and
-`api.gennety.com` should remain during the agent migration window. Remove them
-only after installed agents, MCP clients, OAuth providers, webhooks, and email
-links no longer use the legacy URLs.
+After migration, remove any stale DNS records or external integrations that
+still reference non-Beajee hostnames once agents, MCP clients, OAuth providers,
+webhooks, and email links are fully migrated.
 
 ## Vercel
 
