@@ -9,12 +9,11 @@ const agents = [
     description: "OpenAI\u2019s agent for code.",
     url: "https://openai.com/codex",
     logo: (
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-10 w-10">
-        <rect x="8" y="12" width="32" height="24" rx="3" stroke="currentColor" strokeWidth="1.5" fill="none" />
-        <path d="M16 22l-4 4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <path d="M32 22l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <line x1="24" y1="20" x2="22" y2="28" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
+      <img
+        src="/images/agents/codex.png"
+        alt="Codex"
+        className="h-10 w-10 object-contain"
+      />
     ),
   },
   {
@@ -22,13 +21,11 @@ const agents = [
     description: "Your open-source personal AI.",
     url: "https://openclaw.ai",
     logo: (
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-10 w-10">
-        <path d="M12 20c0 0 6-6 14-4s12 6 12 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-        <path d="M12 28c0 0 6 6 14 4s12-6 12-12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-        <path d="M8 24H4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M44 24H40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="24" cy="24" r="3.5" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      </svg>
+      <img
+        src="/images/agents/openclaw.png"
+        alt="OpenClaw"
+        className="h-10 w-10 object-contain"
+      />
     ),
   },
   {

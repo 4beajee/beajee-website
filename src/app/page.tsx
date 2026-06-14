@@ -247,68 +247,16 @@ export default function LandingPage() {
 
         <div className="relative mt-7 w-full max-w-2xl text-center">
           {/* Decorative agent icons */}
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            className="pointer-events-none absolute -left-6 -top-4 w-6 h-6 select-none text-white/[0.15] sm:-left-8 sm:-top-6"
-            aria-hidden="true"
-          >
-            <path
-              d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-            <path
-              d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-          </svg>
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            className="pointer-events-none absolute right-0 top-1 w-6 h-6 select-none text-white/[0.15] sm:right-4 sm:top-0"
-            aria-hidden="true"
-          >
-            <path
-              d="M12 2v4"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-            <path
-              d="M12 6c-3.5 0-6 2.5-6 6 0 2.5 1.5 4.5 3 5"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-            <path
-              d="M12 6c3.5 0 6 2.5 6 6 0 2.5-1.5 4.5-3 5"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-            <path
-              d="M9 10h6"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-          </svg>
+          <img
+            src="/images/agents/codex.png"
+            alt=""
+            className="pointer-events-none absolute -left-6 -top-4 w-6 h-6 select-none opacity-[0.12] sm:-left-8 sm:-top-6"
+          />
+          <img
+            src="/images/agents/openclaw.png"
+            alt=""
+            className="pointer-events-none absolute right-0 top-1 w-6 h-6 select-none opacity-[0.12] sm:right-4 sm:top-0"
+          />
           <img
             src="/images/agents/hermes.png"
             alt=""
