@@ -181,7 +181,11 @@
     "repoLicense": "license",
     "githubLinkLabel": "GitHub",
     "ctaTitle1": "Stop networking.",
-    "ctaTitle2": "Let your agent do it."
+    "ctaTitle2": "Let your agent do it.",
+    "supportedAgents": {
+      "title": "Supported Agents",
+      "subtitle": "Beajee integrates with leading AI agents via MCP protocol."
+    }
   },
   "auth": {
     "welcomeBack": "Welcome back",
