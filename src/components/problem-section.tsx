@@ -1,11 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, type Variants, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export function ProblemSection() {
+  const t = useTranslations("landing");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [isMatchPrincipleOpen, setIsMatchPrincipleOpen] = useState(false);
+
+  // Simulation states:
+  // 0: Scanning (Initial state)
+  // 1: Negotiating (Connecting lines and data flows)
+  // 2: Double Confirmation (Both sides turn green/light up)
+  // 3: Simultaneous Release (Proposal envelopes / alerts fly to both users simultaneously)
+  const [simStep, setSimStep] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+    const interval = setInterval(() => {
+      setSimStep((prev) => (prev + 1) % 4);
+    }, 4000); // 4 seconds per state
+    return () => clearInterval(interval);
+  }, [isPlaying]);
 
   const draw: Variants = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -19,6 +37,33 @@ export function ProblemSection() {
     }
   };
 
+  const problemPoints = [
+    {
+      title: t("problemPointJobsTitle"),
+      desc: [
+        t("problemPointJobsDesc1"),
+        t("problemPointJobsDesc2"),
+        t("problemPointJobsDesc3")
+      ]
+    },
+    {
+      title: t("problemPoint1Title"),
+      desc: [t("problemPoint1Desc")]
+    },
+    {
+      title: t("problemPoint2Title"),
+      desc: [t("problemPoint2Desc")]
+    },
+    {
+      title: t("problemPoint3Title"),
+      desc: [t("problemPoint3Desc")]
+    },
+    {
+      title: t("problemPoint4Title"),
+      desc: [t("problemPoint4Desc")]
+    }
+  ];
+
   return (
     <section className="mx-auto max-w-5xl space-y-20 px-4 py-16 sm:px-6 sm:py-24">
       {/* Block 1: Problem */}
@@ -26,40 +71,15 @@ export function ProblemSection() {
         <div className="flex-1 space-y-8">
           <div>
             <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
-              Why networking is broken
+              {t("problemTitle")}
             </h2>
             <p className="mt-4 text-base leading-7 text-neutral-400">
-              Beajee is a new kind of social network. No feeds, no algorithms. Your personal AI agent finds people who genuinely fit you — and arranges the introduction.
+              {t("problemSubtitle")}
             </p>
           </div>
 
           <div className="space-y-3">
-            {[
-              {
-                title: "People don't know how to ask for help",
-                desc: [
-                  "People struggle to ask for help, or feel ashamed to do so, and this becomes a real barrier. Yet research consistently shows that a well-framed request almost always gets a response.",
-                  "A good ask gives the other person a chance to apply their skills or resources, which is rewarding in itself. There is also a curious psychological effect: someone who has helped you once is more likely to help you again than someone you have helped yourself.",
-                  "Steve Jobs illustrates this perfectly. At 12, he found HP co-founder Bill Hewlett's number in the phone book and called him to ask for spare parts to build a frequency counter. Hewlett not only gave him the parts, he offered Jobs a summer job at the factory. Years later, Jobs recalled the story in a 1994 interview and put it simply: \"Most people never get these experiences because they never ask.\""
-                ]
-              },
-              {
-                title: "The barrier of first contact",
-                desc: ["Most people don't know where to find potential partners or how to reach out. So they delay — or avoid it entirely."]
-              },
-              {
-                title: "The right people are nearby — but you'll never know",
-                desc: ["There's no mechanism that says at the right moment: \"Here's someone you should meet — and here's why.\" So the connection never happens."]
-              },
-              {
-                title: "Hard to explain mutual value",
-                desc: ["Even when contact happens, people struggle to articulate why working together makes sense. The synergy is real — but invisible."]
-              },
-              {
-                title: "Networking stays random",
-                desc: ["Finding people at your level, with similar challenges or a complementary perspective, is nearly impossible without the right tool. It relies on luck."]
-              }
-            ].map((item, i) => {
+            {problemPoints.map((item, i) => {
               const isOpen = openIndex === i;
               
               return (
@@ -96,8 +116,8 @@ export function ProblemSection() {
                           className="overflow-hidden"
                         >
                           <div className="space-y-3 pt-2 text-sm leading-6 text-neutral-400">
-                            {item.desc.map((paragraph) => (
-                              <p key={paragraph}>{paragraph}</p>
+                            {item.desc.map((paragraph, pIdx) => (
+                              <p key={pIdx}>{paragraph}</p>
                             ))}
                           </div>
                         </motion.div>
@@ -117,7 +137,7 @@ export function ProblemSection() {
             xmlns="http://www.w3.org/2000/svg"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-20px" }}
             className="text-white w-64 h-64 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
           >
             {/* Minimalist Handshake lines */}
@@ -138,7 +158,7 @@ export function ProblemSection() {
           
           <div className="max-w-xl">
             <p className="mb-4 text-[13px] font-semibold uppercase text-neutral-400">
-              Mutual Match principle
+              {t("mutualPrincipleKicker")}
             </p>
             
             <div 
@@ -147,7 +167,7 @@ export function ProblemSection() {
             >
               <div className="flex items-start justify-between gap-6">
                 <h3 className="text-2xl font-semibold leading-snug text-white transition-colors group-hover:text-neutral-200">
-                  Nobody reaches out first. Both sides receive the proposal at the same time.
+                  {t("mutualPrincipleTitle")}
                 </h3>
                 <motion.div
                   initial={false}
@@ -171,11 +191,11 @@ export function ProblemSection() {
                   >
                     <div className="pt-4">
                       <p className="mb-8 text-base leading-7 text-neutral-400">
-                        Agents negotiate behind the scenes before either person knows the other exists. Nobody feels like they &quot;messaged first&quot; — which removes the biggest psychological barrier in cold networking.
+                        {t("mutualPrincipleDesc")}
                       </p>
                       <div className="pt-8 border-t border-[#1a1a1a]">
                         <p className="text-base leading-7 text-neutral-400">
-                          Social networks were built to connect people. Beajee returns to that original idea — with agents that do the searching for you.
+                          {t("mutualPrincipleFooter")}
                         </p>
                       </div>
                     </div>
@@ -185,107 +205,284 @@ export function ProblemSection() {
             </div>
           </div>
 
-          {/* Animation Container */}
-          <div className="relative w-full aspect-video sm:aspect-square lg:aspect-auto lg:h-[400px] flex items-center justify-center">
-            {/* Minimalist SVG Graph */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 300">
-              <defs>
-                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="5" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
+          {/* Redesigned Premium Simulation Widget */}
+          <div className="w-full relative border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl rounded-2xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-2xl group min-h-[360px] sm:min-h-[400px]">
+            {/* Grid background matching stars / modern tech */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent pointer-events-none" />
+            <div className="absolute -left-1/4 -top-1/4 w-1/2 h-1/2 bg-white/[0.02] blur-[80px] rounded-full pointer-events-none" />
+            <div className="absolute -right-1/4 -bottom-1/4 w-1/2 h-1/2 bg-white/[0.02] blur-[80px] rounded-full pointer-events-none" />
 
-              {/* Center -> Left Line */}
-              <motion.path 
-                d="M 200 150 L 80 150" 
-                stroke="#404040" 
-                strokeWidth="1" 
-                fill="none" 
-                initial={{ pathLength: 0, opacity: 0 }} 
-                whileInView={{ pathLength: 1, opacity: 1 }} 
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.5, ease: "easeInOut" }} 
-              />
-              {/* Center -> Right Line */}
-              <motion.path 
-                d="M 200 150 L 320 150" 
-                stroke="#404040" 
-                strokeWidth="1" 
-                fill="none" 
-                initial={{ pathLength: 0, opacity: 0 }} 
-                whileInView={{ pathLength: 1, opacity: 1 }} 
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.5, ease: "easeInOut" }} 
-              />
-              
-              {/* Central Agent Dot */}
-              <motion.circle 
-                cx="200" cy="150" r="4" 
-                fill="white" 
-                filter="url(#glow)"
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5 }}
-              />
+            {/* Header info */}
+            <div className="flex items-center justify-between gap-4 z-10">
+              <span className="text-[10px] tracking-[0.15em] font-mono text-neutral-500 uppercase flex items-center gap-2 select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                {t("simulationTitle")}
+              </span>
+              <span className="text-[10px] tracking-[0.1em] font-mono text-neutral-500 select-none">
+                {t("simulationStep", { step: simStep + 1 })}
+              </span>
+            </div>
 
-              {/* Pulsing ring around Agent */}
-              <motion.circle 
-                cx="200" cy="150" r="12" 
-                stroke="white" 
-                strokeWidth="1"
-                fill="none" 
-                initial={{ scale: 0, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-              />
+            {/* Visual simulation content */}
+            <div className="my-10 flex flex-col justify-center items-center relative z-10 flex-1 w-full">
+              <div className="flex items-center justify-between w-full max-w-[280px] sm:max-w-[340px] mx-auto relative px-2">
+                
+                {/* User A (Human) */}
+                <motion.div
+                  animate={{
+                    borderColor: simStep === 3 ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.08)",
+                    boxShadow: simStep === 3 ? "0 0 15px rgba(255,255,255,0.15)" : "none"
+                  }}
+                  transition={{ duration: 0.5 }}
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border bg-neutral-950 flex items-center justify-center relative z-20 shrink-0"
+                >
+                  <span className="text-xs font-semibold text-neutral-300 select-none">A</span>
+                  
+                  {/* User Label */}
+                  <span className="absolute -bottom-5 px-1.5 py-0.5 rounded-full border border-white/[0.04] bg-neutral-950 text-[7px] font-mono text-neutral-500 uppercase tracking-wider select-none whitespace-nowrap">
+                    {t("userA")}
+                  </span>
 
-              {/* User A Circle */}
-              <motion.circle 
-                cx="80" cy="150" r="24" 
-                stroke="#2a2a2a" 
-                strokeWidth="1"
-                fill="#0a0a0a" 
-              />
-              <motion.circle 
-                cx="80" cy="150" r="24" 
-                stroke="white" 
-                strokeWidth="1"
-                fill="none" 
-                filter="url(#glow)"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ delay: 1.5, duration: 0.5 }}
-              />
-              <text x="80" y="154" fill="#666" fontSize="10" textAnchor="middle" fontFamily="monospace">USER A</text>
+                  {/* Notification bubble */}
+                  <AnimatePresence>
+                    {simStep === 3 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.8 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -5, scale: 0.8 }}
+                        className="absolute -top-12 -left-4 -right-4 bg-white text-black text-[9px] font-semibold py-1 px-1.5 rounded-lg shadow-xl text-center select-none z-30"
+                      >
+                        Meet Alex?
+                        <div className="absolute bottom-[-3px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rotate-45" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
 
-              {/* User B Circle */}
-              <motion.circle 
-                cx="320" cy="150" r="24" 
-                stroke="#2a2a2a" 
-                strokeWidth="1"
-                fill="#0a0a0a" 
-              />
-              <motion.circle 
-                cx="320" cy="150" r="24" 
-                stroke="white" 
-                strokeWidth="1"
-                fill="none" 
-                filter="url(#glow)"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ delay: 1.5, duration: 0.5 }}
-              />
-              <text x="320" y="154" fill="#666" fontSize="10" textAnchor="middle" fontFamily="monospace">USER B</text>
+                {/* Agent A (AI) */}
+                <motion.div
+                  animate={{
+                    scale: simStep >= 1 ? 1.05 : 0.95,
+                    borderColor: simStep >= 2 ? "rgba(16,185,129,0.3)" : simStep === 1 ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.06)",
+                    backgroundColor: simStep >= 2 ? "rgba(16,185,129,0.04)" : "rgba(0,0,0,0.4)"
+                  }}
+                  transition={{ duration: 0.4 }}
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center relative z-20 shrink-0"
+                >
+                  <svg
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-colors duration-300 ${simStep >= 2 ? "text-emerald-400" : "text-neutral-400"}`}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M5.938 12.835c.127-.039.285.02.373.143.028.038.036.092.046.14.003.014-.02.033-.04.05-.124-.098-.24-.194-.354-.291-.011-.01-.016-.027-.025-.042zM8.396 9.412c.195-.032.39-.06.588-.05a.54.54 0 01.148.026c.202.071.402.147.601.224.028.01.05.036.075.055l-.013.027a9.203 9.203 0 01-.26-.089c-.115-.038-.213-.077-.315-.098-.25-.05-.25-.046-.292-.014l.574.144c.275.139.55.276.823.417.042.022.09.057.107.098.026.06.063.076.117.072.066-.006.132-.017.213-.027l-.04.086c.051.08.142.02.216.064-.074.13-.247.09-.334.199l.061.074-.12.087c0 .106-.038.168-.306.243l.026.085-.196.042.07.124h-.25l-.007.137c-.081-.01-.161-.018-.244-.027l-.053.123c-.027-.008-.052-.011-.073-.023-.067-.038-.128-.056-.195.006-.019.017-.063.014-.093.008-.026-.006-.05-.029-.07-.042-.11.095-.11.095-.208.00" />
+                  </svg>
+                  {simStep === 0 && (
+                    <span className="absolute -inset-1 rounded-full border border-white/[0.04] animate-pulse" />
+                  )}
+                </motion.div>
 
-            </svg>
+                {/* Central Hub */}
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/[0.06] bg-neutral-900/80 backdrop-blur flex items-center justify-center relative z-20 shrink-0">
+                  <motion.div
+                    animate={{
+                      scale: simStep === 1 ? [1, 1.15, 1] : 1,
+                      rotate: simStep === 1 ? 360 : 0
+                    }}
+                    transition={{
+                      rotate: { repeat: Infinity, duration: 6, ease: "linear" },
+                      scale: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                    }}
+                    className="absolute inset-0.5 rounded-full border border-dashed border-white/[0.08]"
+                  />
+                  <motion.div
+                    animate={{
+                      backgroundColor: simStep >= 2 ? "rgba(16,185,129,0.2)" : "rgba(255,255,255,0.03)",
+                      borderColor: simStep >= 2 ? "#10b981" : "rgba(255,255,255,0.08)",
+                      boxShadow: simStep >= 2 ? "0 0 12px rgba(16,185,129,0.35)" : "none"
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border flex items-center justify-center text-[8px] transition-all"
+                  >
+                    {simStep >= 2 ? (
+                      <motion.svg
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </motion.svg>
+                    ) : (
+                      <div className="w-1 h-1 rounded-full bg-white/30 animate-pulse" />
+                    )}
+                  </motion.div>
+                </div>
+
+                {/* Agent B (AI) */}
+                <motion.div
+                  animate={{
+                    scale: simStep >= 1 ? 1.05 : 0.95,
+                    borderColor: simStep >= 2 ? "rgba(16,185,129,0.3)" : simStep === 1 ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.06)",
+                    backgroundColor: simStep >= 2 ? "rgba(16,185,129,0.04)" : "rgba(0,0,0,0.4)"
+                  }}
+                  transition={{ duration: 0.4 }}
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center relative z-20 shrink-0"
+                >
+                  <svg
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-colors duration-300 ${simStep >= 2 ? "text-emerald-400" : "text-neutral-400"}`}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M5.938 12.835c.127-.039.285.02.373.143.028.038.036.092.046.14.003.014-.02.033-.04.05-.124-.098-.24-.194-.354-.291-.011-.01-.016-.027-.025-.042zM8.396 9.412c.195-.032.39-.06.588-.05a.54.54 0 01.148.026c.202.071.402.147.601.224.028.01.05.036.075.055l-.013.027a9.203 9.203 0 01-.26-.089c-.115-.038-.213-.077-.315-.098-.25-.05-.25-.046-.292-.014l.574.144c.275.139.55.276.823.417.042.022.09.057.107.098.026.06.063.076.117.072.066-.006.132-.017.213-.027l-.04.086c.051.08.142.02.216.064-.074.13-.247.09-.334.199l.061.074-.12.087c0 .106-.038.168-.306.243l.026.085-.196.042.07.124h-.25l-.007.137c-.081-.01-.161-.018-.244-.027l-.053.123c-.027-.008-.052-.011-.073-.023-.067-.038-.128-.056-.195.006-.019.017-.063.014-.093.008-.026-.006-.05-.029-.07-.042-.11.095-.11.095-.208.00" />
+                  </svg>
+                  {simStep === 0 && (
+                    <span className="absolute -inset-1 rounded-full border border-white/[0.04] animate-pulse" />
+                  )}
+                </motion.div>
+
+                {/* User B (Human) */}
+                <motion.div
+                  animate={{
+                    borderColor: simStep === 3 ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.08)",
+                    boxShadow: simStep === 3 ? "0 0 15px rgba(255,255,255,0.15)" : "none"
+                  }}
+                  transition={{ duration: 0.5 }}
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border bg-neutral-950 flex items-center justify-center relative z-20 shrink-0"
+                >
+                  <span className="text-xs font-semibold text-neutral-300 select-none">B</span>
+                  
+                  {/* User Label */}
+                  <span className="absolute -bottom-5 px-1.5 py-0.5 rounded-full border border-white/[0.04] bg-neutral-950 text-[7px] font-mono text-neutral-500 uppercase tracking-wider select-none whitespace-nowrap">
+                    {t("userB")}
+                  </span>
+
+                  {/* Notification bubble */}
+                  <AnimatePresence>
+                    {simStep === 3 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.8 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -5, scale: 0.8 }}
+                        className="absolute -top-12 -left-4 -right-4 bg-white text-black text-[9px] font-semibold py-1 px-1.5 rounded-lg shadow-xl text-center select-none z-30"
+                      >
+                        Meet Arlan?
+                        <div className="absolute bottom-[-3px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rotate-45" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                {/* Responsive dynamic lines connecting the elements */}
+                <div className="absolute left-[12%] right-[12%] top-1/2 -translate-y-1/2 h-[1px] bg-white/[0.04] z-10 pointer-events-none flex justify-between">
+                  {/* Visual segment User A to Agent A */}
+                  <div className="w-[18%] h-full bg-white/[0.08]" />
+                  {/* Visual segment Agent A to Central Hub */}
+                  <div className="w-[22%] h-full relative overflow-hidden bg-white/[0.08]">
+                    {simStep === 1 && (
+                      <motion.div
+                        initial={{ left: "-100%" }}
+                        animate={{ left: "100%" }}
+                        transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
+                        className="absolute top-0 bottom-0 w-1/3 bg-gradient-to-r from-transparent via-white/80 to-transparent"
+                      />
+                    )}
+                    {simStep === 3 && (
+                      <motion.div
+                        initial={{ left: "100%" }}
+                        animate={{ left: "-100%" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="absolute top-0 bottom-0 w-1/3 bg-gradient-to-l from-transparent via-emerald-400 to-transparent"
+                      />
+                    )}
+                  </div>
+                  {/* Central Hub gap */}
+                  <div className="w-[12%] h-full" />
+                  {/* Visual segment Central Hub to Agent B */}
+                  <div className="w-[22%] h-full relative overflow-hidden bg-white/[0.08]">
+                    {simStep === 1 && (
+                      <motion.div
+                        initial={{ right: "-100%" }}
+                        animate={{ right: "100%" }}
+                        transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
+                        className="absolute top-0 bottom-0 w-1/3 bg-gradient-to-l from-transparent via-white/80 to-transparent"
+                      />
+                    )}
+                    {simStep === 3 && (
+                      <motion.div
+                        initial={{ right: "100%" }}
+                        animate={{ right: "-100%" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="absolute top-0 bottom-0 w-1/3 bg-gradient-to-r from-transparent via-emerald-400 to-transparent"
+                      />
+                    )}
+                  </div>
+                  {/* Visual segment Agent B to User B */}
+                  <div className="w-[18%] h-full bg-white/[0.08]" />
+                </div>
+
+              </div>
+            </div>
+
+            {/* Status logs card */}
+            <div className="z-10 bg-neutral-950/[0.4] border border-white/[0.04] rounded-xl p-4 flex flex-col gap-2">
+              <span className="text-[9px] uppercase tracking-wider font-mono text-neutral-500 select-none">
+                {t("simulationStatus")}
+              </span>
+              <div className="min-h-[40px] flex items-center justify-between gap-4">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={simStep}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    className="text-xs text-neutral-300 font-mono"
+                  >
+                    {simStep === 0 && t("simulationScanning")}
+                    {simStep === 1 && t("simulationNegotiating")}
+                    {simStep === 2 && t("simulationAgreed")}
+                    {simStep === 3 && t("simulationReleased")}
+                  </motion.p>
+                </AnimatePresence>
+
+                {/* Control play / pause / restart */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setIsPlaying(!isPlaying)}
+                    className="w-6 h-6 rounded-md border border-white/[0.08] hover:border-white/[0.15] flex items-center justify-center text-neutral-400 hover:text-white bg-white/[0.02] active:bg-white/[0.05] transition-all"
+                    title={isPlaying ? "Pause" : "Play"}
+                  >
+                    {isPlaying ? (
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                      </svg>
+                    ) : (
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSimStep(0);
+                      setIsPlaying(true);
+                    }}
+                    className="px-2 py-0.5 rounded-md border border-white/[0.08] hover:border-white/[0.15] text-[9px] font-mono text-neutral-400 hover:text-white bg-white/[0.02] active:bg-white/[0.05] transition-all flex items-center gap-1 select-none"
+                  >
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                    </svg>
+                    {t("simulationRestart")}
+                  </button>
+                </div>
+              </div>
+            </div>
             
-            {/* Decorative background glow behind animation */}
-            <div className="absolute inset-0 bg-white/[0.01] blur-2xl rounded-full pointer-events-none" />
           </div>
         </div>
         
