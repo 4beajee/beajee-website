@@ -222,7 +222,7 @@ export function ProblemSection() {
             </div>
 
             {/* Visual simulation content */}
-            <div className="my-10 flex flex-col justify-center items-center relative z-10 flex-1 w-full">
+            <div className="mt-16 mb-4 sm:mt-20 sm:mb-0 flex flex-col justify-center items-center relative z-10 flex-1 w-full">
               <div className="flex items-center justify-between w-full max-w-[280px] sm:max-w-[340px] md:max-w-[480px] lg:max-w-[560px] mx-auto relative px-2">
                 
                 {/* User A (Human) */}

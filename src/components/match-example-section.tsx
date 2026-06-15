@@ -47,7 +47,7 @@ export const MatchExampleSection = forwardRef<HTMLElement, MatchExampleSectionPr
               <div className="h-3 w-3 rounded-full bg-white/10" />
             </div>
             <div className="flex items-center gap-2">
-              <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
+              {/* Removed blinking dot as requested */}
             </div>
           </div>
 
