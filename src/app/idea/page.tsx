@@ -31,9 +31,9 @@ export default async function IdeaPage() {
   ];
 
   return (
-    <div className="min-h-dvh bg-[#050505]">
+    <div className="min-h-dvh bg-transparent">
       <nav
-        className="sticky top-0 z-50 border-b border-[#1a1a1a] bg-[#050505]/80 backdrop-blur-xl"
+        className="sticky top-0 z-50 border-b border-[#1a1a1a] bg-[#010103]/60 backdrop-blur-xl"
         style={{ paddingTop: "var(--safe-top)" }}
       >
         <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-4 sm:h-16 sm:px-6">

@@ -4,7 +4,7 @@
 
 /* ─── Layout tokens ─── */
 :root {
-  --background: #050505;
+  --background: #010103;
   --foreground: #ededed;
 
   /* App chrome heights */
@@ -408,7 +408,11 @@ article table {
   .top-banner-shimmer::after,
   .animate-card-float-in,
   .active-step-sheen::after,
-  .active-step-text-sheen {
+  .active-step-text-sheen,
+  .animate-agent-facebook,
+  .starry-twinkle,
+  .shooting-star-1,
+  .shooting-star-2 {
     animation: none;
   }
 
@@ -592,3 +596,74 @@ article table {
   animation: agent-float-5 7.5s ease-in-out infinite;
 }
 
+.animate-agent-facebook {
+  animation: agent-float-4 8.2s ease-in-out infinite;
+}
+
+/* ─── Starry background (pure CSS, GPU-composited) ─── */
+
+/* Subtle twinkle on medium stars — opacity only, zero paint cost */
+@keyframes stars-twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.starry-twinkle {
+  animation: stars-twinkle 6s ease-in-out infinite;
+  will-change: opacity;
+}
+
+/* Shooting stars — transform + opacity only, fully compositor-driven */
+.shooting-star {
+  position: absolute;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 220, 255, 0.7), transparent);
+  border-radius: 999px;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+@keyframes shoot-1 {
+  0%, 95% {
+    opacity: 0;
+    transform: rotate(-35deg) translateX(0);
+  }
+  96% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-35deg) translateX(320px);
+  }
+}
+
+@keyframes shoot-2 {
+  0%, 93% {
+    opacity: 0;
+    transform: rotate(-42deg) translateX(0);
+  }
+  94% {
+    opacity: 0.75;
+  }
+  97% {
+    opacity: 0;
+    transform: rotate(-42deg) translateX(280px);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.shooting-star-1 {
+  top: 12%;
+  left: 35%;
+  animation: shoot-1 18s linear infinite;
+}
+
+.shooting-star-2 {
+  top: 30%;
+  left: 65%;
+  animation: shoot-2 24s linear infinite;
+  animation-delay: 8s;
+}

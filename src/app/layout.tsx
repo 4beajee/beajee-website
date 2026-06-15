@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { CookieConsent } from "@/components/cookie-consent";
+import { StarryBackground } from "@/components/starry-background";
 import { MobileLanguageFab } from "@/components/mobile-language-fab";
 import { type Locale } from "@/i18n/config";
 import { loadMessages } from "@/i18n/messages";
@@ -41,10 +42,11 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#050505]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
         suppressHydrationWarning
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <StarryBackground />
           {children}
           <CookieConsent />
           <MobileLanguageFab />

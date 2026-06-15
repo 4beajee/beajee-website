@@ -11,9 +11,9 @@ export default async function CookiePolicyPage() {
   const t = await getTranslations();
 
   return (
-    <div className="min-h-dvh bg-[#050505]">
+    <div className="min-h-dvh bg-transparent">
       {/* Nav */}
-      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-[#050505]/80 border-b border-[#1a1a1a]">
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-[#010103]/60 border-b border-[#1a1a1a]">
         <div className="flex items-center justify-between px-6 h-16 max-w-3xl mx-auto">
           <Link href="/" className="text-lg font-semibold text-white">
             {t("common.beajee")}
