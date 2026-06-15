@@ -48,7 +48,6 @@ export const MatchExampleSection = forwardRef<HTMLElement, MatchExampleSectionPr
             </div>
             <div className="flex items-center gap-2">
               <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
-              <span className="text-[10px] font-medium tracking-wider text-neutral-500 uppercase">Live Match Stream</span>
             </div>
           </div>
 
@@ -70,13 +69,14 @@ export const MatchExampleSection = forwardRef<HTMLElement, MatchExampleSectionPr
             </motion.div>
 
             {/* Divider & Negotiating */}
-            <div className="relative flex items-center justify-center border-y border-white/10 sm:border-y-0 sm:border-l sm:border-white/10 bg-white/[0.01] py-8 sm:py-0 sm:px-0">
+            <div className="relative flex items-center justify-center border-y border-white/10 sm:border-y-0 bg-white/[0.01] py-8 sm:py-0 sm:w-32 shrink-0">
+               <div className="hidden sm:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 border-l border-white/10" />
                {/* Center Badge */}
                <motion.div 
                   variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } } }}
-                  className="absolute z-10 flex items-center justify-center bg-[#050505] px-4 py-2 border border-white/10 rounded-full"
+                  className="relative z-10 flex items-center justify-center bg-[#050505] px-4 py-2 border border-white/10 rounded-full"
                >
-                 <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest flex items-center gap-1">
+                 <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest flex items-center gap-1 whitespace-nowrap">
                    {negotiating}
                    <span className="flex gap-0.5 ml-1">
                      <span className="animate-pulse" style={{ animationDelay: "0ms" }}>.</span>

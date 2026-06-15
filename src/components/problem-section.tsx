@@ -223,7 +223,7 @@ export function ProblemSection() {
 
             {/* Visual simulation content */}
             <div className="my-10 flex flex-col justify-center items-center relative z-10 flex-1 w-full">
-              <div className="flex items-center justify-between w-full max-w-[280px] sm:max-w-[340px] mx-auto relative px-2">
+              <div className="flex items-center justify-between w-full max-w-[280px] sm:max-w-[340px] md:max-w-[480px] lg:max-w-[560px] mx-auto relative px-2">
                 
                 {/* User A (Human) */}
                 <motion.div
@@ -232,12 +232,12 @@ export function ProblemSection() {
                     boxShadow: simStep === 3 ? "0 0 15px rgba(255,255,255,0.15)" : "none"
                   }}
                   transition={{ duration: 0.5 }}
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border bg-neutral-950 flex items-center justify-center relative z-20 shrink-0"
+                  className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full border bg-neutral-950 flex items-center justify-center relative z-20 shrink-0"
                 >
-                  <span className="text-xs font-semibold text-neutral-300 select-none">A</span>
+                  <span className="text-xs md:text-sm lg:text-lg font-semibold text-neutral-300 select-none">A</span>
                   
                   {/* User Label */}
-                  <span className="absolute -bottom-5 px-1.5 py-0.5 rounded-full border border-white/[0.04] bg-neutral-950 text-[7px] font-mono text-neutral-500 uppercase tracking-wider select-none whitespace-nowrap">
+                  <span className="absolute -bottom-5 md:-bottom-7 px-1.5 md:px-2.5 py-0.5 rounded-full border border-white/[0.04] bg-neutral-950 text-[7px] md:text-[10px] lg:text-xs font-mono text-neutral-500 uppercase tracking-wider select-none whitespace-nowrap">
                     {t("userA")}
                   </span>
 
@@ -248,7 +248,7 @@ export function ProblemSection() {
                         initial={{ opacity: 0, y: -10, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -5, scale: 0.8 }}
-                        className="absolute -top-12 -left-4 -right-4 bg-white text-black text-[9px] font-semibold py-1 px-1.5 rounded-lg shadow-xl text-center select-none z-30"
+                        className="absolute -top-12 lg:-top-14 -left-4 -right-4 bg-white text-black text-[9px] md:text-xs lg:text-sm font-semibold py-1 lg:py-1.5 px-1.5 lg:px-2 rounded-lg lg:rounded-xl shadow-xl text-center select-none z-30"
                       >
                         Meet Alex?
                         <div className="absolute bottom-[-3px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rotate-45" />
@@ -265,12 +265,12 @@ export function ProblemSection() {
                     backgroundColor: simStep >= 2 ? "rgba(16,185,129,0.04)" : "rgba(0,0,0,0.4)"
                   }}
                   transition={{ duration: 0.4 }}
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center relative z-20 shrink-0"
+                  className="w-7 h-7 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full border flex items-center justify-center relative z-20 shrink-0"
                 >
                   <svg
                     fill="currentColor"
                     viewBox="0 0 24 24"
-                    className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-colors duration-300 ${simStep >= 2 ? "text-emerald-400" : "text-neutral-400"}`}
+                    className={`w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-colors duration-300 ${simStep >= 2 ? "text-emerald-400" : "text-neutral-400"}`}
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path d="M5.938 12.835c.127-.039.285.02.373.143.028.038.036.092.046.14.003.014-.02.033-.04.05-.124-.098-.24-.194-.354-.291-.011-.01-.016-.027-.025-.042zM8.396 9.412c.195-.032.39-.06.588-.05a.54.54 0 01.148.026c.202.071.402.147.601.224.028.01.05.036.075.055l-.013.027a9.203 9.203 0 01-.26-.089c-.115-.038-.213-.077-.315-.098-.25-.05-.25-.046-.292-.014l.574.144c.275.139.55.276.823.417.042.022.09.057.107.098.026.06.063.076.117.072.066-.006.132-.017.213-.027l-.04.086c.051.08.142.02.216.064-.074.13-.247.09-.334.199l.061.074-.12.087c0 .106-.038.168-.306.243l.026.085-.196.042.07.124h-.25l-.007.137c-.081-.01-.161-.018-.244-.027l-.053.123c-.027-.008-.052-.011-.073-.023-.067-.038-.128-.056-.195.006-.019.017-.063.014-.093.008-.026-.006-.05-.029-.07-.042-.11.095-.11.095-.208.00" />
@@ -281,7 +281,7 @@ export function ProblemSection() {
                 </motion.div>
 
                 {/* Central Hub */}
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/[0.06] bg-neutral-900/80 backdrop-blur flex items-center justify-center relative z-20 shrink-0">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full border border-white/[0.06] bg-neutral-900/80 backdrop-blur flex items-center justify-center relative z-20 shrink-0">
                   <motion.div
                     animate={{
                       scale: simStep === 1 ? [1, 1.15, 1] : 1,
@@ -300,13 +300,13 @@ export function ProblemSection() {
                       boxShadow: simStep >= 2 ? "0 0 12px rgba(16,185,129,0.35)" : "none"
                     }}
                     transition={{ duration: 0.3 }}
-                    className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border flex items-center justify-center text-[8px] transition-all"
+                    className="w-4 h-4 sm:w-5 sm:h-5 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full border flex items-center justify-center text-[8px] transition-all"
                   >
                     {simStep >= 2 ? (
                       <motion.svg
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-400"
+                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-5 md:h-5 lg:w-6 lg:h-6 text-emerald-400"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -315,7 +315,7 @@ export function ProblemSection() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </motion.svg>
                     ) : (
-                      <div className="w-1 h-1 rounded-full bg-white/30 animate-pulse" />
+                      <div className="w-1 h-1 md:w-2 md:h-2 rounded-full bg-white/30 animate-pulse" />
                     )}
                   </motion.div>
                 </div>
@@ -328,12 +328,12 @@ export function ProblemSection() {
                     backgroundColor: simStep >= 2 ? "rgba(16,185,129,0.04)" : "rgba(0,0,0,0.4)"
                   }}
                   transition={{ duration: 0.4 }}
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border flex items-center justify-center relative z-20 shrink-0"
+                  className="w-7 h-7 sm:w-8 sm:h-8 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full border flex items-center justify-center relative z-20 shrink-0"
                 >
                   <svg
                     fill="currentColor"
                     viewBox="0 0 24 24"
-                    className={`w-3 h-3 sm:w-3.5 sm:h-3.5 transition-colors duration-300 ${simStep >= 2 ? "text-emerald-400" : "text-neutral-400"}`}
+                    className={`w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-5 md:h-5 lg:w-6 lg:h-6 transition-colors duration-300 ${simStep >= 2 ? "text-emerald-400" : "text-neutral-400"}`}
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path d="M5.938 12.835c.127-.039.285.02.373.143.028.038.036.092.046.14.003.014-.02.033-.04.05-.124-.098-.24-.194-.354-.291-.011-.01-.016-.027-.025-.042zM8.396 9.412c.195-.032.39-.06.588-.05a.54.54 0 01.148.026c.202.071.402.147.601.224.028.01.05.036.075.055l-.013.027a9.203 9.203 0 01-.26-.089c-.115-.038-.213-.077-.315-.098-.25-.05-.25-.046-.292-.014l.574.144c.275.139.55.276.823.417.042.022.09.057.107.098.026.06.063.076.117.072.066-.006.132-.017.213-.027l-.04.086c.051.08.142.02.216.064-.074.13-.247.09-.334.199l.061.074-.12.087c0 .106-.038.168-.306.243l.026.085-.196.042.07.124h-.25l-.007.137c-.081-.01-.161-.018-.244-.027l-.053.123c-.027-.008-.052-.011-.073-.023-.067-.038-.128-.056-.195.006-.019.017-.063.014-.093.008-.026-.006-.05-.029-.07-.042-.11.095-.11.095-.208.00" />
@@ -350,12 +350,12 @@ export function ProblemSection() {
                     boxShadow: simStep === 3 ? "0 0 15px rgba(255,255,255,0.15)" : "none"
                   }}
                   transition={{ duration: 0.5 }}
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border bg-neutral-950 flex items-center justify-center relative z-20 shrink-0"
+                  className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full border bg-neutral-950 flex items-center justify-center relative z-20 shrink-0"
                 >
-                  <span className="text-xs font-semibold text-neutral-300 select-none">B</span>
+                  <span className="text-xs md:text-sm lg:text-lg font-semibold text-neutral-300 select-none">B</span>
                   
                   {/* User Label */}
-                  <span className="absolute -bottom-5 px-1.5 py-0.5 rounded-full border border-white/[0.04] bg-neutral-950 text-[7px] font-mono text-neutral-500 uppercase tracking-wider select-none whitespace-nowrap">
+                  <span className="absolute -bottom-5 md:-bottom-7 px-1.5 md:px-2.5 py-0.5 rounded-full border border-white/[0.04] bg-neutral-950 text-[7px] md:text-[10px] lg:text-xs font-mono text-neutral-500 uppercase tracking-wider select-none whitespace-nowrap">
                     {t("userB")}
                   </span>
 
@@ -366,7 +366,7 @@ export function ProblemSection() {
                         initial={{ opacity: 0, y: -10, scale: 0.8 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -5, scale: 0.8 }}
-                        className="absolute -top-12 -left-4 -right-4 bg-white text-black text-[9px] font-semibold py-1 px-1.5 rounded-lg shadow-xl text-center select-none z-30"
+                        className="absolute -top-12 lg:-top-14 -left-4 -right-4 bg-white text-black text-[9px] md:text-xs lg:text-sm font-semibold py-1 lg:py-1.5 px-1.5 lg:px-2 rounded-lg lg:rounded-xl shadow-xl text-center select-none z-30"
                       >
                         Meet Arlan?
                         <div className="absolute bottom-[-3px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rotate-45" />

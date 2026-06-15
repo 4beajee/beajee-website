@@ -48,14 +48,18 @@ export const KeyPrinciplesSection = forwardRef<HTMLElement, KeyPrinciplesSection
                 >
                   {isActive && (
                     <motion.div 
-                      layoutId="activeTabIndicator"
-                      className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-white/80 to-white/20 hidden md:block"
+                      initial={{ scaleY: 0 }}
+                      animate={{ scaleY: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-white/80 to-white/20 origin-top hidden md:block"
                     />
                   )}
                   {isActive && (
                     <motion.div 
-                      layoutId="activeTabIndicatorMobile"
-                      className="absolute left-0 right-0 bottom-0 h-1 bg-gradient-to-r from-white/80 to-white/20 md:hidden"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute left-0 right-0 bottom-0 h-1 bg-gradient-to-r from-white/80 to-white/20 origin-left md:hidden"
                     />
                   )}
                   <span className="font-medium text-sm md:text-base whitespace-nowrap md:whitespace-normal">
