@@ -563,6 +563,15 @@ article table {
   }
 }
 
+@keyframes agent-float-5 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-7px) translateX(5px) rotate(1.5deg);
+  }
+}
+
 .animate-agent-codex {
   animation: agent-float-1 6s ease-in-out infinite;
 }
@@ -578,3 +587,8 @@ article table {
 .animate-agent-claude {
   animation: agent-float-4 6.5s ease-in-out infinite;
 }
+
+.animate-agent-kimi {
+  animation: agent-float-5 7.5s ease-in-out infinite;
+}
+
