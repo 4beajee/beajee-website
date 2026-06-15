@@ -15,15 +15,12 @@ export function ProblemSection() {
   // 2: Double Confirmation (Both sides turn green/light up)
   // 3: Simultaneous Release (Proposal envelopes / alerts fly to both users simultaneously)
   const [simStep, setSimStep] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-
   useEffect(() => {
-    if (!isPlaying) return;
     const interval = setInterval(() => {
       setSimStep((prev) => (prev + 1) % 4);
     }, 4000); // 4 seconds per state
     return () => clearInterval(interval);
-  }, [isPlaying]);
+  }, []);
 
   const draw: Variants = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -450,36 +447,7 @@ export function ProblemSection() {
                   </motion.p>
                 </AnimatePresence>
 
-                {/* Control play / pause / restart */}
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setIsPlaying(!isPlaying)}
-                    className="w-6 h-6 rounded-md border border-white/[0.08] hover:border-white/[0.15] flex items-center justify-center text-neutral-400 hover:text-white bg-white/[0.02] active:bg-white/[0.05] transition-all"
-                    title={isPlaying ? "Pause" : "Play"}
-                  >
-                    {isPlaying ? (
-                      <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                      </svg>
-                    ) : (
-                      <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    )}
-                  </button>
-                  <button
-                    onClick={() => {
-                      setSimStep(0);
-                      setIsPlaying(true);
-                    }}
-                    className="px-2 py-0.5 rounded-md border border-white/[0.08] hover:border-white/[0.15] text-[9px] font-mono text-neutral-400 hover:text-white bg-white/[0.02] active:bg-white/[0.05] transition-all flex items-center gap-1 select-none"
-                  >
-                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
-                    </svg>
-                    {t("simulationRestart")}
-                  </button>
-                </div>
+
               </div>
             </div>
             
