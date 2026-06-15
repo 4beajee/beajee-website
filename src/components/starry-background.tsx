@@ -25,7 +25,7 @@ export function StarryBackground() {
 
   return (
     <div
-      className="fixed inset-0 -z-10 pointer-events-none"
+      className="fixed inset-0 -z-10 pointer-events-none overflow-hidden"
       style={{ background: "radial-gradient(ellipse at 50% 40%, #06060f 0%, #020206 45%, #000 100%)" }}
       aria-hidden="true"
     >
