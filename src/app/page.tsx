@@ -528,8 +528,8 @@ export default function LandingPage() {
               {t("landing.supportedAgents.title")}
             </p>
             <div className="relative w-full py-3 overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-10 before:bg-gradient-to-r before:from-[#050505] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-10 after:bg-gradient-to-l after:from-[#050505] after:to-transparent">
-              <div className="flex w-[200%] animate-marquee items-center gap-8 px-4">
-                <div className="flex items-center justify-around gap-8 shrink-0 w-1/2">
+              <div className="flex w-max animate-marquee items-center gap-8 px-4">
+                <div className="flex items-center gap-8 shrink-0">
                   <CodexIcon className="h-8 w-8 text-white select-none shrink-0" />
                   <OpenClawIcon className="h-8 w-8 select-none shrink-0" />
                   <FacebookIcon className="h-8 w-8 select-none shrink-0" />
@@ -542,7 +542,7 @@ export default function LandingPage() {
                   <PerplexityIcon className="h-8 w-8 text-white select-none shrink-0" />
                   <CursorIcon className="h-8 w-8 text-white select-none shrink-0" />
                 </div>
-                <div className="flex items-center justify-around gap-8 shrink-0 w-1/2">
+                <div className="flex items-center gap-8 shrink-0">
                   <CodexIcon className="h-8 w-8 text-white select-none shrink-0" />
                   <OpenClawIcon className="h-8 w-8 select-none shrink-0" />
                   <FacebookIcon className="h-8 w-8 select-none shrink-0" />
