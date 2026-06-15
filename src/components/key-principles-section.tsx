@@ -13,59 +13,10 @@ export interface KeyPrinciplesSectionProps {
   principles: Principle[];
 }
 
-function getPrincipleIcon(index: number, isActive: boolean) {
-  const colorClasses = [
-    isActive ? "text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]" : "text-neutral-500 group-hover:text-neutral-400",
-    isActive ? "text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.4)]" : "text-neutral-500 group-hover:text-neutral-400",
-    isActive ? "text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.4)]" : "text-neutral-500 group-hover:text-neutral-400",
-    isActive ? "text-rose-400 drop-shadow-[0_0_8px_rgba(244,63,94,0.4)]" : "text-neutral-500 group-hover:text-neutral-400",
-  ];
-
-  const classString = `w-5 h-5 transition-all duration-300 ${colorClasses[index] || ""}`;
-
-  switch (index) {
-    case 0: // Quality > Volume
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={classString}>
-          <circle cx="12" cy="12" r="10" strokeDasharray="3 3" />
-          <circle cx="12" cy="12" r="6" />
-          <circle cx="12" cy="12" r="2" fill="currentColor" />
-          <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
-        </svg>
-      );
-    case 1: // Mutual Match
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={classString}>
-          <circle cx="9" cy="12" r="6" strokeDasharray="2 2" />
-          <circle cx="15" cy="12" r="6" />
-          <path d="M12 8v8" strokeWidth="1.5" />
-        </svg>
-      );
-    case 2: // Context-Driven
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={classString}>
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-          <polyline points="14 2 14 8 20 8" />
-          <line x1="16" y1="13" x2="8" y2="13" strokeWidth="1.5" />
-          <line x1="16" y1="17" x2="8" y2="17" strokeWidth="1.5" />
-          <line x1="10" y1="9" x2="8" y2="9" strokeWidth="1.5" />
-        </svg>
-      );
-    case 3: // Privacy-First
-      default:
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={classString}>
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          <circle cx="12" cy="11" r="3" />
-          <path d="M12 14v4" />
-        </svg>
-      );
-  }
-}
-
 export const KeyPrinciplesSection = forwardRef<HTMLElement, KeyPrinciplesSectionProps>(
   ({ title, principles }, ref) => {
-    const [activePrinciple, setActivePrinciple] = useState<number | null>(null);
+    // Default to first principle active
+    const [activeIdx, setActiveIdx] = useState<number>(0);
 
     return (
       <motion.section
@@ -73,81 +24,71 @@ export const KeyPrinciplesSection = forwardRef<HTMLElement, KeyPrinciplesSection
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="mx-auto w-full max-w-5xl px-4 py-16 sm:px-6 sm:py-24"
       >
-        <p className="mb-10 text-center text-[13px] font-semibold uppercase text-neutral-400 select-none">
+        <p className="mb-16 text-center text-[13px] font-semibold uppercase tracking-widest text-neutral-500">
           {title}
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 w-full">
-          {principles.map((principle, index) => {
-            const isActive = activePrinciple === index;
-
-            return (
-              <motion.button
-                key={principle.title}
-                type="button"
-                layout
-                onClick={() => setActivePrinciple((current) => (current === index ? null : index))}
-                aria-expanded={isActive}
-                className={`group h-full rounded-xl border p-5 text-left transition-[border-color,transform,background-color,box-shadow] duration-300 hover:-translate-y-1 sm:p-6 relative overflow-hidden ${
-                  isActive 
-                    ? "border-white/15 bg-white/[0.03] shadow-[0_0_30px_rgba(255,255,255,0.04)]" 
-                    : "border-white/[0.08] bg-[#0a0a0a] hover:border-white/[0.14]"
-                }`}
-              >
-                {/* Active Top Gradient Indicator */}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeGlow"
-                    className={`absolute top-0 left-6 right-6 h-px bg-gradient-to-r ${
-                      index === 0 ? "from-transparent via-amber-500/80 to-transparent" :
-                      index === 1 ? "from-transparent via-emerald-500/80 to-transparent" :
-                      index === 2 ? "from-transparent via-blue-500/80 to-transparent" :
-                      "from-transparent via-rose-500/80 to-transparent"
-                    }`}
-                  />
-                )}
-
-                <div className="flex items-start justify-between gap-4 relative z-10">
-                  <div className="flex items-center gap-3">
-                    {/* Visual Icon */}
-                    {getPrincipleIcon(index, isActive)}
-                    
-                    <h3 className={`text-base font-semibold leading-snug sm:text-lg transition-colors duration-300 ${
-                      isActive ? "text-white" : "text-neutral-300 group-hover:text-white"
-                    }`}>
-                      {principle.title}
-                    </h3>
-                  </div>
-                  <span
-                    className={`mt-0.5 text-xs font-mono transition-transform duration-300 ${
-                      isActive ? "rotate-45 text-white/80" : "text-neutral-500 group-hover:text-neutral-400"
-                    }`}
-                    aria-hidden="true"
-                  >
-                    +
-                  </span>
-                </div>
-
-                <AnimatePresence initial={false}>
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+          {/* Tabs (Left column) */}
+          <div className="flex flex-row md:flex-col gap-2 w-full md:w-1/3 overflow-x-auto pb-4 md:pb-0 snap-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+            {principles.map((principle, index) => {
+              const isActive = activeIdx === index;
+              return (
+                <button
+                  key={principle.title}
+                  onClick={() => setActiveIdx(index)}
+                  className={`relative shrink-0 snap-start px-5 py-4 text-left transition-all duration-300 rounded-xl md:rounded-r-none md:rounded-l-2xl overflow-hidden ${
+                    isActive 
+                      ? "bg-white/[0.04] text-white" 
+                      : "text-neutral-500 hover:bg-white/[0.02] hover:text-neutral-300"
+                  }`}
+                >
                   {isActive && (
-                    <motion.div
-                      key="content"
-                      initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                      animate={{ height: "auto", opacity: 1, marginTop: 14 }}
-                      exit={{ height: 0, opacity: 0, marginTop: 0 }}
-                      transition={{ duration: 0.28, ease: "easeOut" }}
-                      className="overflow-hidden relative z-10 pl-8"
-                    >
-                      <p className="text-sm text-neutral-400 leading-relaxed">{principle.desc}</p>
-                    </motion.div>
+                    <motion.div 
+                      layoutId="activeTabIndicator"
+                      className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-white/80 to-white/20 hidden md:block"
+                    />
                   )}
-                </AnimatePresence>
-              </motion.button>
-            );
-          })}
+                  {isActive && (
+                    <motion.div 
+                      layoutId="activeTabIndicatorMobile"
+                      className="absolute left-0 right-0 bottom-0 h-1 bg-gradient-to-r from-white/80 to-white/20 md:hidden"
+                    />
+                  )}
+                  <span className="font-medium text-sm md:text-base whitespace-nowrap md:whitespace-normal">
+                    {principle.title}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Content (Right column) */}
+          <div className="w-full md:w-2/3 min-h-[250px] relative mt-2 md:mt-0 p-6 sm:p-10 rounded-2xl border border-white/10 bg-[#050505] shadow-[0_0_40px_rgba(255,255,255,0.02)] overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIdx}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="flex flex-col h-full justify-center"
+              >
+                <div className="mb-6 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white/5 border border-white/10 text-neutral-400 font-mono text-sm sm:text-lg">
+                  {activeIdx + 1}
+                </div>
+                <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4">
+                  {principles[activeIdx].title}
+                </h3>
+                <p className="text-sm sm:text-base leading-relaxed text-neutral-400">
+                  {principles[activeIdx].desc}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </motion.section>
     );
