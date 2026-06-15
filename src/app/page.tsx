@@ -281,6 +281,40 @@ function ManusIcon({ className }: { className?: string }) {
   );
 }
 
+function CursorIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      fill="currentColor"
+      fillRule="evenodd"
+      style={{ flex: "none", lineHeight: 1 }}
+      viewBox="0 0 24 24"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title>Cursor</title>
+      <path d="M22.106 5.68L12.5.135a.998.998 0 00-.998 0L1.893 5.68a.84.84 0 00-.419.726v11.186c0 .3.16.577.42.727l9.607 5.547a.999.999 0 00.998 0l9.608-5.547a.84.84 0 00.42-.727V6.407a.84.84 0 00-.42-.726zm-.603 1.176L12.228 22.92c-.063.108-.228.064-.228-.061V12.34a.59.59 0 00-.295-.51l-9.11-5.26c-.107-.062-.063-.228.062-.228h18.55c.264 0 .428.286.296.514z"></path>
+    </svg>
+  );
+}
+
+function PerplexityIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      style={{ flex: "none", lineHeight: 1 }}
+      viewBox="0 0 24 24"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <title>Perplexity</title>
+      <rect x="3.5" y="3.5" width="17" height="12" rx="3" fill="none" stroke="currentColor" strokeWidth="2" />
+      <rect x="2" y="18" width="20" height="2.2" rx="1.1" fill="currentColor" />
+      <rect x="9" y="7.5" width="2" height="4" rx="1" fill="currentColor" />
+      <rect x="13" y="7.5" width="2" height="4" rx="1" fill="currentColor" />
+    </svg>
+  );
+}
+
 export default function LandingPage() {
   const t = useTranslations();
   const howRef = useReveal();
@@ -452,6 +486,9 @@ export default function LandingPage() {
 
         <ManusIcon className="hidden sm:block pointer-events-none absolute left-[25%] top-[10%] w-12 h-12 md:w-14 md:h-14 select-none animate-agent-manus text-white opacity-80" />
 
+        <PerplexityIcon className="hidden sm:block pointer-events-none absolute right-[25%] top-[8%] w-12 h-12 md:w-14 md:h-14 select-none animate-agent-perplexity text-white opacity-80" />
+        <CursorIcon className="hidden sm:block pointer-events-none absolute right-[32%] bottom-[15%] w-12 h-12 md:w-14 md:h-14 select-none animate-agent-cursor text-white opacity-80" />
+
 
         <div className="relative mt-7 w-full max-w-2xl text-center">
           <h1 className="hero-title text-[2.5rem] font-semibold leading-[1.12] text-white sm:text-5xl md:text-6xl">
@@ -502,6 +539,8 @@ export default function LandingPage() {
                   </div>
                   <ClaudeCodeIcon className="h-8 w-8 text-white select-none shrink-0" />
                   <ManusIcon className="h-8 w-8 text-white select-none shrink-0" />
+                  <PerplexityIcon className="h-8 w-8 text-white select-none shrink-0" />
+                  <CursorIcon className="h-8 w-8 text-white select-none shrink-0" />
                 </div>
                 <div className="flex items-center justify-around gap-8 shrink-0 w-1/2">
                   <CodexIcon className="h-8 w-8 text-white select-none shrink-0" />
@@ -513,6 +552,8 @@ export default function LandingPage() {
                   </div>
                   <ClaudeCodeIcon className="h-8 w-8 text-white select-none shrink-0" />
                   <ManusIcon className="h-8 w-8 text-white select-none shrink-0" />
+                  <PerplexityIcon className="h-8 w-8 text-white select-none shrink-0" />
+                  <CursorIcon className="h-8 w-8 text-white select-none shrink-0" />
                 </div>
               </div>
             </div>
