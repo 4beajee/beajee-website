@@ -130,6 +130,25 @@ const agents = [
       </div>
     ),
   },
+  {
+    name: "Claude Code",
+    description: "Anthropic’s agentic coding tool.",
+    url: "https://anthropic.com/claude",
+    logo: (
+      <svg
+        style={{ flex: "none", lineHeight: 1 }}
+        viewBox="0 0 24 24"
+        className="h-10 w-10 text-white"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>Claude Code</title>
+        <rect x="3.5" y="3.5" width="17" height="12" rx="3" fill="none" stroke="currentColor" strokeWidth="2" />
+        <rect x="2" y="18" width="20" height="2.2" rx="1.1" fill="currentColor" />
+        <rect x="9" y="7.5" width="2" height="4" rx="1" fill="currentColor" />
+        <rect x="13" y="7.5" width="2" height="4" rx="1" fill="currentColor" />
+      </svg>
+    ),
+  },
 ];
 
 function AgentCard({ agent, index }: { agent: (typeof agents)[0]; index: number }) {

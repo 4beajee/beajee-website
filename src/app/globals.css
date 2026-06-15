@@ -526,78 +526,55 @@ article table {
   }
 }
 
-/* ─── Hero falling agent animations ─── */
-@keyframes agent-fall-left {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px) translateX(0) scale(0.9);
-  }
-  15% {
-    opacity: 1;
-    transform: translateY(-5px) translateX(-4px) scale(1.03);
+/* ─── Hero floating agent animations ─── */
+@keyframes agent-float-1 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(15px) translateX(4px) scale(1);
-  }
-  80% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(40px) translateX(-4px) scale(0.95);
+    transform: translateY(-8px) translateX(3px) rotate(2deg);
   }
 }
 
-@keyframes agent-fall-right-mid {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px) translateX(0) scale(0.9);
-  }
-  15% {
-    opacity: 1;
-    transform: translateY(-5px) translateX(4px) scale(1.03);
+@keyframes agent-float-2 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(15px) translateX(-4px) scale(1);
-  }
-  80% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(40px) translateX(4px) scale(0.95);
+    transform: translateY(-10px) translateX(-4px) rotate(-3deg);
   }
 }
 
-@keyframes agent-fall-right-bottom {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px) translateX(0) scale(0.9);
-  }
-  15% {
-    opacity: 1;
-    transform: translateY(-5px) translateX(-2px) scale(1.03);
+@keyframes agent-float-3 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(15px) translateX(2px) scale(1);
+    transform: translateY(-6px) translateX(4px) rotate(3deg);
   }
-  80% {
-    opacity: 0.9;
+}
+
+@keyframes agent-float-4 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
   }
-  100% {
-    opacity: 0;
-    transform: translateY(40px) translateX(-2px) scale(0.95);
+  50% {
+    transform: translateY(-9px) translateX(-3px) rotate(-2deg);
   }
 }
 
 .animate-agent-codex {
-  animation: agent-fall-left 6s ease-in-out infinite;
+  animation: agent-float-1 6s ease-in-out infinite;
 }
 
 .animate-agent-openclaw {
-  animation: agent-fall-right-mid 5.5s ease-in-out infinite;
+  animation: agent-float-2 7s ease-in-out infinite;
 }
 
 .animate-agent-hermes {
-  animation: agent-fall-right-bottom 6.5s ease-in-out infinite;
+  animation: agent-float-3 8s ease-in-out infinite;
+}
+
+.animate-agent-claude {
+  animation: agent-float-4 6.5s ease-in-out infinite;
 }
