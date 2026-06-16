@@ -357,23 +357,16 @@ export default function LandingPage() {
   */
 
   return (
-    <div className="min-h-dvh bg-transparent overflow-x-hidden">
+    <div className="min-h-dvh bg-transparent">
       {/* ── Nav ── */}
       <nav
         className="sticky top-0 z-50 backdrop-blur-xl bg-[#010103]/60 border-b border-[#1a1a1a]"
         style={{ paddingTop: "var(--safe-top)" }}
       >
-        <div className="flex items-center justify-between px-4 sm:px-6 h-14 sm:h-16 max-w-5xl mx-auto">
-          <Link href="/" className="flex items-center gap-2.5">
-            <svg
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-5 h-5 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 1.5c.6 0 1.1.4 1.3.9l2.2 6.5 6.9.6c.6.1 1.1.7.9 1.3-.1.3-.3.6-.6.8l-5.4 4.5 1.6 6.8c.1.6-.3 1.2-.9 1.3-.3 0-.7-.1-1-.3l-5.8-4.2-5.8 4.2c-.5.4-1.2.3-1.6-.2-.2-.3-.3-.6-.2-1l1.6-6.8-5.4-4.5c-.5-.4-.6-1.1-.2-1.6.2-.2.5-.4.8-.5l6.9-.6 2.2-6.5c.2-.5.7-.9 1.3-.9z" />
-            </svg>
-            <span className="text-base sm:text-lg font-semibold text-white tracking-tight">{t("common.beajee")}</span>
+        <div className="flex items-center justify-between px-4 sm:px-6 h-12 sm:h-14 max-w-5xl mx-auto">
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-base sm:text-lg font-semibold text-white tracking-tight leading-none pt-0.5">{t("common.beajee")}</span>
+            <img src="/beajee-star.png" alt="Beajee Star" className="w-5 h-5 object-contain select-none" />
           </Link>
 
           {/* Desktop nav links */}
@@ -387,7 +380,7 @@ export default function LandingPage() {
             </a>
             <a
               href={`${appUrl}/login`}
-              className="inline-flex min-h-10 items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition-colors hover:bg-neutral-200"
+              className="inline-flex min-h-8 items-center justify-center rounded-full bg-white px-4 py-1.5 text-xs sm:text-sm font-medium text-black transition-colors hover:bg-neutral-200"
             >
               {t("common.getStarted")}
             </a>
