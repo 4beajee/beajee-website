@@ -37,8 +37,16 @@ export default async function IdeaPage() {
         style={{ paddingTop: "var(--safe-top)" }}
       >
         <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-4 sm:h-16 sm:px-6">
-          <Link href="/" className="text-base font-semibold text-white sm:text-lg">
-            {t("common.beajee")}
+          <Link href="/" className="flex items-center gap-2.5">
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-5 h-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 1.5c.6 0 1.1.4 1.3.9l2.2 6.5 6.9.6c.6.1 1.1.7.9 1.3-.1.3-.3.6-.6.8l-5.4 4.5 1.6 6.8c.1.6-.3 1.2-.9 1.3-.3 0-.7-.1-1-.3l-5.8-4.2-5.8 4.2c-.5.4-1.2.3-1.6-.2-.2-.3-.3-.6-.2-1l1.6-6.8-5.4-4.5c-.5-.4-.6-1.1-.2-1.6.2-.2.5-.4.8-.5l6.9-.6 2.2-6.5c.2-.5.7-.9 1.3-.9z" />
+            </svg>
+            <span className="text-base font-semibold text-white sm:text-lg tracking-tight">{t("common.beajee")}</span>
           </Link>
           <Link href="/" className="text-sm text-neutral-400 transition-colors hover:text-white">
             &larr; {t("common.back")}
