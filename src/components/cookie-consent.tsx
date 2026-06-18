@@ -132,7 +132,7 @@ export function CookieConsent() {
         hiding ? "translate-y-full opacity-0" : "translate-y-0 opacity-100"
       }`}
     >
-      <div className="max-w-6xl mx-auto rounded-xl border border-[#1a1a1a] bg-[#0a0a0a]/95 backdrop-blur-xl p-3 sm:px-5 sm:py-4 shadow-[0_-4px_40px_rgba(0,0,0,0.5)] max-h-[90vh] overflow-y-auto">
+      <div className="max-w-3xl mx-auto rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a]/95 backdrop-blur-xl p-3 sm:px-5 sm:py-4 shadow-[0_-4px_40px_rgba(0,0,0,0.5)] max-h-[90vh] overflow-y-auto">
         {!showCustomize ? (
           /* ── Default banner view ── */
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
@@ -148,19 +148,19 @@ export function CookieConsent() {
             <div className="grid grid-cols-3 sm:flex sm:items-center gap-2 sm:shrink-0">
               <button
                 onClick={() => dismiss("rejected", ALL_REJECTED)}
-                className={cx(subtleButtonSmallClass, "border-0 bg-transparent text-neutral-400 ring-white/[0.10]")}
+                className={cx(subtleButtonSmallClass, "border-0 bg-transparent text-neutral-400 ring-white/[0.10] !rounded-full")}
               >
                 {t("decline")}
               </button>
               <button
                 onClick={() => setShowCustomize(true)}
-                className={cx(subtleButtonSmallClass, "border-0 bg-transparent ring-white/[0.10]")}
+                className={cx(subtleButtonSmallClass, "border-0 bg-transparent ring-white/[0.10] !rounded-full")}
               >
                 {t("customize")}
               </button>
               <button
                 onClick={() => dismiss("accepted", ALL_ACCEPTED)}
-                className={primaryButtonSmallClass}
+                className={cx(primaryButtonSmallClass, "!rounded-full")}
               >
                 {t("accept")}
               </button>
@@ -175,7 +175,7 @@ export function CookieConsent() {
               </h2>
               <button
                 onClick={() => setShowCustomize(false)}
-                className={cx(subtleButtonSmallClass, "border-0 bg-transparent text-neutral-400 ring-white/[0.10]")}
+                className={cx(subtleButtonSmallClass, "border-0 bg-transparent text-neutral-400 ring-white/[0.10] !rounded-full")}
               >
                 {t("cancel")}
               </button>
@@ -217,7 +217,7 @@ export function CookieConsent() {
                   const action = allTrue ? "accepted" : allFalse ? "rejected" : "partial";
                   dismiss(action, consents);
                 }}
-                className={primaryButtonSmallClass}
+                className={cx(primaryButtonSmallClass, "!rounded-full")}
               >
                 {t("savePreferences")}
               </button>
