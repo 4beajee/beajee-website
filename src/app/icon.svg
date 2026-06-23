@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1E1E1E" />
+  <polygon points="100.00,20.00 113.00,64.29 151.42,38.72 132.91,81.00 178.78,86.11 137.42,106.60 169.28,140.00 124.43,129.11 127.36,175.18 100.00,138.00 72.64,175.18 75.57,129.11 30.72,140.00 62.58,106.60 21.22,86.11 67.09,81.00 48.58,38.72 87.00,64.29" fill="#1E1E1E" stroke="#666666" stroke-width="4" stroke-linejoin="round" />
+  <polygon points="100,100 92,94 84,100 92,106" fill="#1E1E1E" stroke="#666666" stroke-width="2" stroke-linejoin="round" />
+  <polygon points="100,100 108,94 116,100 108,106" fill="#1E1E1E" stroke="#666666" stroke-width="2" stroke-linejoin="round" />
+</svg>
